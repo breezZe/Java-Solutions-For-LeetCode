@@ -548,7 +548,7 @@ public static List<String> letterCombinations(String digits) {
  //167. Two Sum II - Input array is sorted
  public static int[] twoSum(int[] numbers, int target) {
 	 int[] dst = new int[2];
-	 int[] j =new int[2];
+	 int j;
      for(int i=0;i<numbers.length;i++)
      {
     	 	int key = target-numbers[i];
