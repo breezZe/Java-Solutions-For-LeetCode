@@ -543,9 +543,34 @@ public static List<String> letterCombinations(String digits) {
 		 dst[i]=ldst.get(i);
 	 }
 	 return dst;
-	 
-        
+ 
     }
+ //167. Two Sum II - Input array is sorted
+ public static int[] twoSum(int[] numbers, int target) {
+	 int[] dst = new int[2];
+	 int[] j =new int[2];
+     for(int i=0;i<numbers.length;i++)
+     {
+    	 	int key = target-numbers[i];
+    	 	int lo=i+1;
+    		int hi = numbers.length-1;
+    		while(lo<=hi)
+    		{
+    			int mid = lo + (hi-lo)/2;
+    			if(key > numbers[mid])    lo = mid+1;
+    			else if(key<numbers[mid]) hi = mid-1;
+    			else
+    			{
+    				j = mid;
+    				dst[0] = i+1;
+    	    	 	dst[1] = j+1;
+    	    	 	return dst;
+    				
+    			}
+    		}
+     }
+     return dst;
+ }
 	public static void main(String[] args)
 	{
 	//	System.out.println(my_GCD(25,15));
