@@ -63,6 +63,7 @@ public class gcd {
 			a[i+1]=key;
 		}
 	}
+
 	public static int BinarySearch(int key, int[] a)
 	{
 		int lo=0;
@@ -77,7 +78,20 @@ public class gcd {
 		}
 		return -1;
 	}
-	
+	public static int BinarySearch(char key, char[] a)
+	{
+		int lo=0;
+		int hi = a.length-1;
+		while(lo<=hi)
+		{
+			int mid = lo + (hi-lo)/2;
+			if(key > a[mid])    lo = mid+1;
+			else if(key<a[mid]) hi = mid-1;
+			else
+				return mid;
+		}
+		return -1;
+	}
 	public static int BinarySearch(int key, myNode[] a)
 	{
 		int lo=0;
@@ -276,7 +290,7 @@ public static List<String> letterCombinations(String digits) {
       return p;
   }
 
-	     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
 	         
 	         if(t1 == null) return t1;
 	         if(t2 == null) return t2;
@@ -571,17 +585,92 @@ public static List<String> letterCombinations(String digits) {
      }
      return dst;
  }
-	public static void main(String[] args)
+ //454. 4Sum II
+ public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+     int sum=0;
+
+     Map<Integer,Integer> mapAB = new HashMap<>();
+     Map<Integer,Integer> mapCD = new HashMap<>();
+
+     for(int i=0;i<A.length;i++)
+     {
+    	 	for(int j=0;j<B.length;j++)
+    	 	{
+    	 		mapAB.put(A[i]+B[j],mapAB.getOrDefault(A[i]+B[j], 0)+1);
+    	 		mapAB.put(C[i]+D[j],mapCD.getOrDefault(C[i]+D[j], 0)+1);
+    	 	}
+     }
+     for(Integer Key:mapAB.keySet())
+     {
+    	 	if(mapCD.containsKey(-Key))
+    	 		sum+= mapAB.get(Key) * mapCD.get(-Key);
+     }
+	 return sum;
+ }
+ //230. Kth Smallest Element in a BST
+ public static int kthSmallest(TreeNode root, int k) {
+     ArrayList<Integer> ai = new ArrayList<Integer>();
+     searchTree(ai,root);
+     int[] dst =new int[ai.size()];
+	 for(int i=0;i<ai.size();i++)
+	 {
+		 dst[i]=ai.get(i);
+	 }
+     Arrays.sort(dst);
+     return dst[k];
+
+ }
+ public static void searchTree(ArrayList<Integer> ai ,TreeNode root)
+ {
+	 ai.add(root.val);
+	 if(root.left!=null) searchTree(ai,root.left);
+	 if(root.right!=null) searchTree(ai,root.right);
+ }
+ //378. Kth Smallest Element in a Sorted Matrix
+ public static int kthSmallest(int[][] matrix, int k) {
+	 int len=matrix.length;
+     int[] src = new int[len*len];
+     for(int i=0;i<len;i++) 
+     {
+         for(int j=0;j<len;j++)
+         {
+             src[i*len+j]=matrix[i][j];
+         }
+     }
+     Arrays.sort(src);
+     return src[k-1];
+ }
+ public static int guessNumber(int n) {
+     int lo = 1;int hi = n;
+     return mGuess(1,n);
+ }
+ public static int mGuess(int lo,int hi)
+ {
+     while(lo <= hi) {
+     int mid = lo + (hi-lo)/2 ;
+     if(guess(mid) ==1) lo = mid+1;
+     else if(guess(mid) == -1) hi=mid-1;
+     else if(guess(mid) == 0)
+         return mid;
+     }
+  return -1;
+ }
+ public static int guess(int num) {
+	 if(num>45) return -1;
+	 else if(num<45) return 1;
+	 else return 0;
+ }
+ //475: Heaters
+ public static int findRadius(int[] houses, int[] heaters) {
+     
+ }
+ public static void main(String[] args)
 	{
 	//	System.out.println(my_GCD(25,15));
-		String s ="Let's take LeetCode contest";
-		System.out.print(reverseString("hello"));
-		System.out.println("end");
-		String[] ss = {"5","-2","4","C","D","9","+","+"};
-		System.out.println(calPoints(ss));
-		
-		int candies[] = {1,1,2,3};
-		System.out.println(distributeCandies(candies));
+	  // System.out.print(guessNumber(100)); 
+	   int b=8;
+	   double f=b;
+	   System.out.println(Math.floor(Math.sqrt(2*f+0.25)+0.5));
 	 }
 
 	
