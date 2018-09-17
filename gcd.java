@@ -78,6 +78,20 @@ public class gcd {
 		}
 		return -1;
 	}
+	public static int BinarySearch(int key, int[] a, int start, int end)
+	{
+		int lo=start;
+		int hi = end;
+		while(lo<=hi)
+		{
+			int mid = lo + (hi-lo)/2;
+			if(key > a[mid])    lo = mid+1;
+			else if(key<a[mid]) hi = mid-1;
+			else
+				return mid;
+		}
+		return -1;
+	}
 	public static int BinarySearch(char key, char[] a)
 	{
 		int lo=0;
@@ -662,17 +676,134 @@ public static List<String> letterCombinations(String digits) {
  }
  //475: Heaters
  public static int findRadius(int[] houses, int[] heaters) {
-     
+     return 0;
+ }
+ 
+ //15: 3Sum
+ public static List<List<Integer>> threeSum(int[] nums) {
+	 Arrays.sort(nums);
+	    // Map<Integer,Integer> map = new HashMap<>();
+     List<List<Integer>>  dst = new ArrayList<List<Integer>>();
+     //printArray(nums);
+     for(int i=0;i<nums.length-2;i++)
+     {
+    	 if(i>0 && nums[i] == nums[i-1]) continue;
+    	 	int a= nums[i];
+    	 	for(int j=i+1;j<nums.length-1;)
+    	 	{
+    	 		int b = nums[j];
+    	 		if(BinarySearch(-a-b,nums,j+1,nums.length-1)!=-1)
+    	 		{
+    	 		    List<Integer> lst1 = new ArrayList<Integer>();
+    	 		 	lst1.add(a);
+    	 			lst1.add(b);
+    	 			lst1.add(-a-b);
+    	 			dst.add(lst1);
+    	 		}
+                j++;
+                while(j<nums.length-1 && nums[j] == nums[j-1]) j++; // remove duplicate values	
+    	 	}
+     }
+     return dst;
+ }
+ public static List<List<Integer>> threeSum1(int[] nums) // Two pointers solution
+ {
+	 Arrays.sort(nums);
+     List<List<Integer>>  dst = new ArrayList<List<Integer>>();
+     for(int i=0;i<nums.length-2;i++)
+     {
+    	 	if(i>0 && nums[i] == nums[i-1]) continue;
+    	 	int a= nums[i];
+    	 	int target = -a;
+    	 	int j = i+1;
+    	 	int k = nums.length-1;
+    	 	while(j<k) {
+    	 		if(nums[j]+nums[k] == target)
+    	 		{
+    	 			dst.add(Arrays.asList(a,nums[j],nums[k]));
+    	 			j++;
+    	 			k--;
+    	 			while(j<k && nums[j] == nums[j-1]) j++;
+    	 			while(j<k && nums[k] == nums[k+1]) k--;
+    	 		}
+    	 		else if(nums[j] + nums[k] < target) j++;
+    	 		else k--;
+    	 		
+    	 	}
+     }
+    	 	return dst;
+ }
+// 16. 3Sum Closest
+ public static int threeSumClosest(int[] nums, int target) {
+     Arrays.sort(nums);
+     int distance = Integer.MAX_VALUE;
+     int temp,temp2=0;
+     int dst = 0;
+     for(int i=0;i<nums.length;i++)
+     {
+    	 	//if(i>0 && nums[i] == nums[i-1]) continue;
+    	 	for(int j = i+1;j<nums.length;j++)
+    	 	{
+    	 		for(int k = j+1;k<nums.length;k++)
+    	 		{
+    	 			temp = nums[i] + nums[j] + nums[k];
+    	 			temp2 = Math.abs(temp-target);
+    	 			if(temp2< distance) 
+ 				{
+    	 				distance = temp2;
+    	 				dst = temp;
+ 				}
+    	 		}
+    	 	}
+     }
+     return dst;
+ }
+ //16:3Sum Second Solution
+ public static int threeSumClosest1(int[] nums, int target) {
+     Arrays.sort(nums);
+     int dst=0;
+     int a,b,c;
+     dst = nums[0]+nums[1]+nums[2];
+     for(int i=0;i<nums.length-2;i++)
+     {
+    	 	if(i>0 && nums[i] == nums[i-1]) continue;
+    	 	a = nums[i];
+    	 	int j = i+1;
+    	 	int k = nums.length-1;
+    	 	
+    	 	while(j<k)
+    	 	{
+    	 		b = nums[j];c= nums[k];
+    	 		if(a + b + c == target ) return target;
+    	 		else if(a+b+c > target) {
+    	 			if(a+b+c - target < Math.abs(dst- target)) 
+    	 				dst = a+b+c;
+    	 			k--;
+    	 		}
+    	 		else {
+    	 			if(target -(a+b+c) < Math.abs(dst-target)) 
+    	 				dst = a+b+c;
+    	 			j++;
+    	 		}
+    	 	}
+     }
+     return dst;
  }
  public static void main(String[] args)
 	{
 	//	System.out.println(my_GCD(25,15));
 	  // System.out.print(guessNumber(100)); 
-	   int b=8;
-	   double f=b;
-	   System.out.println(Math.floor(Math.sqrt(2*f+0.25)+0.5));
+	 	int[] nums = {1,1,1,0};
+	 	int re= threeSumClosest1(nums,-100);
+	 	System.out.print(re);
 	 }
-
+ public static void printArray(int[] nums)
+ {
+	 for(int i=0;i<nums.length;i++)
+	 {
+		 System.out.print(nums[i]);
+	 }
+ }
 	
 }
 
