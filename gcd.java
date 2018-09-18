@@ -789,13 +789,45 @@ public static List<String> letterCombinations(String digits) {
      }
      return dst;
  }
+ //18. 4Sum
+ public static List<List<Integer>> fourSum(int[] nums, int tar) {	 
+	 Arrays.sort(nums);
+     List<List<Integer>>  dst = new ArrayList<List<Integer>>();
+     for(int m=0;m<nums.length-3;m++)
+     {
+    	 if(m>0 && nums[m] == nums[m-1]) continue;
+	     for(int i=m+1;i<nums.length-2;i++)
+	     {
+	    	 	if(i>m+1 && nums[i] == nums[i-1]) continue;
+	    	 	int a= nums[m];
+	    	 	int b = nums[i];
+	    	 	int target = tar-a-b;
+	    	 	int j = i+1;
+	    	 	int k = nums.length-1;
+	    	 	while(j<k) {
+	    	 		if(nums[j]+nums[k] == target)
+	    	 		{
+	    	 			dst.add(Arrays.asList(a,b,nums[j],nums[k]));
+	    	 			j++;
+	    	 			k--;
+	    	 			while(j<k && nums[j] == nums[j-1]) j++;
+	    	 			while(j<k && nums[k] == nums[k+1]) k--;
+	    	 		}
+	    	 		else if(nums[j] + nums[k] < target) j++;
+	    	 		else k--;	    	 		
+	    	 	}
+	     }	
+     }
+    	 	return dst;
+ }
  public static void main(String[] args)
 	{
 	//	System.out.println(my_GCD(25,15));
 	  // System.out.print(guessNumber(100)); 
-	 	int[] nums = {1,1,1,0};
-	 	int re= threeSumClosest1(nums,-100);
-	 	System.out.print(re);
+	 	int[] nums = {-4,-1,-1,0,1,2};
+	 	//int re= fourSum(nums,0);
+	 	fourSum(nums,-1);
+	 	//System.out.print(re);
 	 }
  public static void printArray(int[] nums)
  {
