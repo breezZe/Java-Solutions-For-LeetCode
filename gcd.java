@@ -894,21 +894,24 @@ public static List<String> letterCombinations(String digits) {
  }
 // 22. Generate Parentheses
  public static List<String> generateParenthesis(int n) {
-	 List<String> list = null;
+	 List<String> list = new ArrayList<String>();
 	 TreeNode node = new TreeNode(1);
 	 generateTreeNode(node,1,1,2*n,n);
-	// StringBuffer s = new StringBuffer();
-	 List<StringBuffer> listBuffer = new ArrayList<StringBuffer>();
-	 getSingleParenthesis(listBuffer,node,0,n);
+	 List<Integer> path = new ArrayList<Integer>();
+	 getAllTreeLines(list,path,node);	
 	 return list;
  }
  public static void generateTreeNode(TreeNode tree, int sum,int pCnt,int index, int n)
  {
-	 if(index < 2) return;
+	 if(index < 2) {
+		 return;
+	 }
 	 if(sum > 0 && pCnt < n) 
 	 {
 		 TreeNode newNode1 = new TreeNode(1);
+		 newNode1.father = tree;
 		 TreeNode newNode2 = new TreeNode(-1);
+		 newNode2.father = tree;
 		 tree.left = newNode1; 
 		 generateTreeNode(tree.left,sum+1,pCnt+1,index-1,n);
 		 tree.right = newNode2;
@@ -917,6 +920,7 @@ public static List<String> letterCombinations(String digits) {
 	 else if(sum <=0)
 	 {
 		 TreeNode newNode = new TreeNode(1);
+		 newNode.father = tree;
 		 tree.left = newNode;
 		 tree.right = null;
 		 generateTreeNode(tree.left,sum+1,pCnt+1,index-1,n);
@@ -928,40 +932,58 @@ public static List<String> letterCombinations(String digits) {
 		 tree.right = newNode;
 		 generateTreeNode(tree.right,sum-1,pCnt,index-1,n);
 	 }
- }
- public static void getSingleParenthesis(List<StringBuffer> sbufList,TreeNode n,int index,int depth)
+ } 
+ public static void getAllTreeLines(List<String> list,List<Integer> path,TreeNode pRoot)
  {
-	 if(sbufList.isEmpty()) {
-		 StringBuffer s = new StringBuffer();
-		 sbufList.add(s);
-	 }
-	 if(n.val == 1) {
-		 sbufList.get(index).append('(');
-	 }
-	 else {
-		 sbufList.get(index).append(')');
-	 }
-	 StringBuffer s= sbufList.get(index);
-	 if(n.left !=null) {
-		 getSingleParenthesis(sbufList, n.left, index,depth);
-		 if(n.right !=null)
-		 {
-			 sbufList.add(s);
-			 getSingleParenthesis(sbufList,n.right,index++,depth);
-		 }
-	 }
-	 else if(n.left == null)
-	 {
-		 if(n.right !=null) {
-			 getSingleParenthesis(sbufList,n.right,index,depth);
-		 }
-	 }
-	 return;
-	 
+	 if (pRoot== null)
+		{
+			return;
+		}
+		path.add(pRoot.val);
+		if (pRoot.left == null && pRoot.right == null) //达到了叶子节点
+		{
+			//printPath(path);//打印路径			
+			StringBuffer s = new StringBuffer();
+			for(int i=0;i<path.size();i++) 
+			{
+				s.append(path.get(i) == 1? '(':')');			    
+			}
+			list.add(s.toString());		
+		}
+		if (pRoot.left!= null)//左子树
+		{
+			getAllTreeLines(list, path, pRoot.left);
+		}
+		
+		if (pRoot.right!= null)//左子树
+		{
+			getAllTreeLines(list, path, pRoot.right);
+		}
+		
+		path.remove(path.size()-1);
+
  }
+ 
+ public static List<String> generatParenthesis_BackTracking(int n)
+ {
+	 List<String> ans = new ArrayList();
+     backtrack(ans, "", 0, 0, n);
+     return ans;
+ }
+
+   public static void backtrack(List<String> list, String str, int open, int close, int max){
+       if(str.length() == max*2){
+           list.add(str);
+           return;
+       }       
+       if(open < max)
+           backtrack(list, str+"(", open+1, close, max);
+       if(close < open)
+           backtrack(list, str+")", open, close+1, max);
+   }
  public static void main(String[] args)
 {
-	 generateParenthesis(2);
+	 generateParenthesis(3);
 }
  public static void printArray(int[] nums)
  {
