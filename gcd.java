@@ -12,6 +12,7 @@ import java.util.HashSet;
 
 public class gcd {
 	
+
 	public static int my_GCD(int p, int q)
 	{
 		if(q==0) return p;
@@ -820,15 +821,148 @@ public static List<String> letterCombinations(String digits) {
      }
     	 	return dst;
  }
- public static void main(String[] args)
-	{
-	//	System.out.println(my_GCD(25,15));
-	  // System.out.print(guessNumber(100)); 
-	 	int[] nums = {-4,-1,-1,0,1,2};
-	 	//int re= fourSum(nums,0);
-	 	fourSum(nums,-1);
-	 	//System.out.print(re);
+ // kSum 
+ public static ArrayList<List<Integer>> kSum(int[] nums, int target, int k, int index) {	 
+	 ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();
+     if(index >= nums.length) {
+         return res;
+     }
+     if(k == 2) {
+     	int i = index, j = nums.length - 1;
+     	while(i < j) {
+             //find a pair
+     	    if(target - nums[i] == nums[j]) {
+     	    	List<Integer> temp = new ArrayList<>();
+             	temp.add(nums[i]);
+             	temp.add(target-nums[i]);
+                 res.add(temp);
+                 //skip duplication
+                 while(i<j && nums[i]==nums[i+1]) i++;
+                 while(i<j && nums[j-1]==nums[j]) j--;
+                 i++;
+                 j--;
+             //move left bound
+     	    } else if (target - nums[i] > nums[j]) {
+     	        i++;
+             //move right bound
+     	    } else {
+     	        j--;
+     	    }
+     	}
+     } else{
+         for (int i = index; i < nums.length - k + 1; i++) {
+             //use current number to reduce ksum into k-1sum
+             ArrayList<List<Integer>> temp = kSum(nums, target - nums[i], k-1, i+1);
+             if(temp != null){
+                 //add previous results
+                 for (List<Integer> t : temp) {
+                     t.add(0, nums[i]);
+                 }
+                 res.addAll(temp);
+             }
+             while (i < nums.length-1 && nums[i] == nums[i+1]) {
+                 //skip duplicated numbers
+                 i++;
+             }
+         }
+     }
+     return res;
+ }
+ //19. Remove Nth Node From End of List
+ public static ListNode removeNthFromEnd(ListNode head, int n) {
+	 ListNode  mHead = new ListNode(0);
+	 mHead.next = head;
+	 ListNode  miterator = mHead.next;
+	 ListNode  last = new ListNode(0);
+	 int len = 1;
+	 while(miterator.next != null) {
+		 miterator = miterator.next;
+		 len++;
 	 }
+	 if(n > len) return null;
+	 
+	 int i=0;
+	 miterator = mHead;
+	 while(i <= len - n)
+	 {
+		 last = miterator;
+		 miterator = miterator.next;
+		 i++;
+	 }
+	 last.next = miterator.next;
+	 return mHead.next;
+ }
+// 22. Generate Parentheses
+ public static List<String> generateParenthesis(int n) {
+	 List<String> list = null;
+	 TreeNode node = new TreeNode(1);
+	 generateTreeNode(node,1,1,2*n,n);
+	// StringBuffer s = new StringBuffer();
+	 List<StringBuffer> listBuffer = new ArrayList<StringBuffer>();
+	 getSingleParenthesis(listBuffer,node,0,n);
+	 return list;
+ }
+ public static void generateTreeNode(TreeNode tree, int sum,int pCnt,int index, int n)
+ {
+	 if(index < 2) return;
+	 if(sum > 0 && pCnt < n) 
+	 {
+		 TreeNode newNode1 = new TreeNode(1);
+		 TreeNode newNode2 = new TreeNode(-1);
+		 tree.left = newNode1; 
+		 generateTreeNode(tree.left,sum+1,pCnt+1,index-1,n);
+		 tree.right = newNode2;
+		 generateTreeNode(tree.right,sum-1,pCnt,index-1,n);
+	 }
+	 else if(sum <=0)
+	 {
+		 TreeNode newNode = new TreeNode(1);
+		 tree.left = newNode;
+		 tree.right = null;
+		 generateTreeNode(tree.left,sum+1,pCnt+1,index-1,n);
+	 }
+	 else
+	 {
+		 TreeNode newNode = new TreeNode(-1);
+		 tree.left = null;
+		 tree.right = newNode;
+		 generateTreeNode(tree.right,sum-1,pCnt,index-1,n);
+	 }
+ }
+ public static void getSingleParenthesis(List<StringBuffer> sbufList,TreeNode n,int index,int depth)
+ {
+	 if(sbufList.isEmpty()) {
+		 StringBuffer s = new StringBuffer();
+		 sbufList.add(s);
+	 }
+	 if(n.val == 1) {
+		 sbufList.get(index).append('(');
+	 }
+	 else {
+		 sbufList.get(index).append(')');
+	 }
+	 StringBuffer s= sbufList.get(index);
+	 if(n.left !=null) {
+		 getSingleParenthesis(sbufList, n.left, index,depth);
+		 if(n.right !=null)
+		 {
+			 sbufList.add(s);
+			 getSingleParenthesis(sbufList,n.right,index++,depth);
+		 }
+	 }
+	 else if(n.left == null)
+	 {
+		 if(n.right !=null) {
+			 getSingleParenthesis(sbufList,n.right,index,depth);
+		 }
+	 }
+	 return;
+	 
+ }
+ public static void main(String[] args)
+{
+	 generateParenthesis(2);
+}
  public static void printArray(int[] nums)
  {
 	 for(int i=0;i<nums.length;i++)
