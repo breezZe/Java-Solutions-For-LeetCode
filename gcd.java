@@ -140,28 +140,28 @@ public class gcd {
 		}
 	
 	}
-public static boolean isMatch(String s, String p) {
-	
-       
-        return true;
-    }
-public static int maxArea(int[] height) {
-	
-	return 1;
-    
-}
-public static List<String> getCombinations(String[] numstr,String digits)
-{
-	List<String> str = new ArrayList<String>();
-	if(digits.isEmpty()) return str;
-	char num = digits.charAt(0);
-	int digit = ((int)(num) - (int)('0'));
-	for(char c:numstr[digit].toCharArray()) {
-		str.addAll(getCombinations(numstr,digits.substring(1, digits.length())));
+	public static boolean isMatch(String s, String p) {
+		
+	       
+	        return true;
+	    }
+	public static int maxArea(int[] height) {
+		
+		return 1;
+	    
 	}
-	return str;
-}
-public static List<String> letterCombinations(String digits) {
+	public static List<String> getCombinations(String[] numstr,String digits)
+	{
+		List<String> str = new ArrayList<String>();
+		if(digits.isEmpty()) return str;
+		char num = digits.charAt(0);
+		int digit = ((int)(num) - (int)('0'));
+		for(char c:numstr[digit].toCharArray()) {
+			str.addAll(getCombinations(numstr,digits.substring(1, digits.length())));
+		}
+		return str;
+	}
+	public static List<String> letterCombinations(String digits) {
 	
 	
     LinkedList<String> ans = new LinkedList<String>();
@@ -204,7 +204,7 @@ public static List<String> letterCombinations(String digits) {
 		return fibonacci[N];
 		
 	}
-	  public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+	public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 	        int i,j,k;
 	        float[] nums3 = new float[nums2.length+nums1.length];
 	        i = j = k =0;
@@ -219,7 +219,7 @@ public static List<String> letterCombinations(String digits) {
 	        return (nums3.length%2==0? ((nums3[nums3.length/2]+nums3[nums3.length/2-1])/2):nums3[nums3.length/2]);
 	    }
 	  
-	  public static String convert(String s, int numRows) {
+	public static String convert(String s, int numRows) {
 	        char[] out = s.toCharArray();
 	        char[][] temp = new char[numRows][s.length()];
 	        int dir = 1;
@@ -252,8 +252,7 @@ public static List<String> letterCombinations(String digits) {
 	        //System.out.println(out);
 	        return new String(out);
 	    }
-	  
-	  public static String convert2(String s, int nRows) {
+	public static String convert2(String s, int nRows) {
 		    char[] c = s.toCharArray();
 		    int len = c.length;
 		    StringBuffer[] sb = new StringBuffer[nRows];
@@ -270,7 +269,7 @@ public static List<String> letterCombinations(String digits) {
 		        sb[0].append(sb[idx]);
 		    return sb[0].toString();
 		}
-  public static boolean isPalindrome(int x)
+	public static boolean isPalindrome(int x)
   {
 
 	    if (x<0 || (x!=0 && x%10==0)) return false;
@@ -282,8 +281,7 @@ public static List<String> letterCombinations(String digits) {
 	    return (x==rev || x==rev/10);
 
   }
-  
-  public static int[] anagramMappings(int[] A, int[] B) {
+  	public static int[] anagramMappings(int[] A, int[] B) {
 	  
       int[] p = new int[A.length];
       int[] isIndexed = new int[A.length];
@@ -971,7 +969,7 @@ public static List<String> letterCombinations(String digits) {
      return ans;
  }
 
-   public static void backtrack(List<String> list, String str, int open, int close, int max){
+ public static void backtrack(List<String> list, String str, int open, int close, int max){
        if(str.length() == max*2){
            list.add(str);
            return;
