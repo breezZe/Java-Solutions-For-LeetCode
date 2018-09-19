@@ -907,9 +907,7 @@ public class gcd {
 	 if(sum > 0 && pCnt < n) 
 	 {
 		 TreeNode newNode1 = new TreeNode(1);
-		 newNode1.father = tree;
 		 TreeNode newNode2 = new TreeNode(-1);
-		 newNode2.father = tree;
 		 tree.left = newNode1; 
 		 generateTreeNode(tree.left,sum+1,pCnt+1,index-1,n);
 		 tree.right = newNode2;
@@ -918,7 +916,6 @@ public class gcd {
 	 else if(sum <=0)
 	 {
 		 TreeNode newNode = new TreeNode(1);
-		 newNode.father = tree;
 		 tree.left = newNode;
 		 tree.right = null;
 		 generateTreeNode(tree.left,sum+1,pCnt+1,index-1,n);
@@ -938,9 +935,9 @@ public class gcd {
 			return;
 		}
 		path.add(pRoot.val);
-		if (pRoot.left == null && pRoot.right == null) //达到了叶子节点
+		if (pRoot.left == null && pRoot.right == null) 
 		{
-			//printPath(path);//打印路径			
+			//printPath(path);		
 			StringBuffer s = new StringBuffer();
 			for(int i=0;i<path.size();i++) 
 			{
@@ -948,12 +945,12 @@ public class gcd {
 			}
 			list.add(s.toString());		
 		}
-		if (pRoot.left!= null)//左子树
+		if (pRoot.left!= null)
 		{
 			getAllTreeLines(list, path, pRoot.left);
 		}
 		
-		if (pRoot.right!= null)//左子树
+		if (pRoot.right!= null)
 		{
 			getAllTreeLines(list, path, pRoot.right);
 		}
@@ -964,7 +961,7 @@ public class gcd {
  
  public static List<String> generatParenthesis_BackTracking(int n)
  {
-	 List<String> ans = new ArrayList();
+	 List<String> ans = new ArrayList<String>();
      backtrack(ans, "", 0, 0, n);
      return ans;
  }
@@ -979,9 +976,78 @@ public class gcd {
        if(close < open)
            backtrack(list, str+")", open, close+1, max);
    }
+
+//24. Swap nodes in pairs
+ public static ListNode swapPairs(ListNode head) {
+	 if(head == null || head.next == null)
+	 {
+		 return head;
+	 }
+	 ListNode A =  head;
+	 ListNode B = A.next;
+	 ListNode C = B.next;
+	 ListNode tempNode = new ListNode(0);
+	 ListNode mHead = head.next;
+	 while(A!=null && A.next != null )
+	 {
+		 B = A.next;
+		 C = B.next;
+		 tempNode.next = B;
+		 B.next = A;
+		 A.next = C;
+		 tempNode = A;
+		 A = C; 
+	 }
+	 return mHead;
+ }
+ //25. Reverse Nodes in k-Group
+ public static ListNode reverseKGroup(ListNode head, int k) {
+	 
+	 if (head==null||head.next==null||k<2) return head;
+	    
+     ListNode mHead = new ListNode(0);
+     mHead.next = head;
+     ListNode prev = mHead,tail = mHead,temp;
+    
+     while(true)
+     {
+    	 	int cnt = k;
+    	 	while(cnt>0 && tail!=null)
+    	 	{
+    	 		k--;
+        	 	tail = tail.next;
+    	 	}
+    	 	if(tail == null) break;
+    	 	
+    	 	head = prev.next;
+    	 	while(prev.next!=tail)
+    	 	{
+    	 		temp=prev.next;
+    	 		prev.next=temp.next;
+    	 		
+    	 		temp.next = tail.next;
+    	 		tail.next = temp;
+    	 	}
+    	 	tail = head;
+    	 	prev = head;
+     }
+     
+	 return mHead;
+ }
  public static void main(String[] args)
 {
-	 generateParenthesis(3);
+	 ListNode A = new ListNode(2);
+	 ListNode B = new ListNode(1);
+	 ListNode C = new ListNode(4);
+	 ListNode D = new ListNode(3);
+	 ListNode E = new ListNode(6);
+	 ListNode F = new ListNode(5);
+	 A.next = B;
+	 B.next = C;
+	 C.next = D;
+	 D.next = E;
+	 E.next = F;
+	 swapPairs(A);
 }
  public static void printArray(int[] nums)
  {
