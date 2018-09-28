@@ -48,6 +48,23 @@ public class gcd {
 		//	System.out.println(((double)j/length)*100 + "%");
 		}
 	}
+	public static void InsertionSort(int[] a,int begin,int end)
+	{
+		int i,j;
+		int key;
+		for(j=begin+1;j<end;j++)
+		{
+			i=j-1;
+			key = a[j];
+			while(i>=begin && a[i]>key)
+			{
+				a[i+1] = a[i];
+				i--;
+			}
+			a[i+1]=key;
+		//	System.out.println(((double)j/length)*100 + "%");
+		}
+	}
 	public static void InsertionSort(myNode[] a)
 	{
 		int i,j;
@@ -1034,20 +1051,100 @@ public class gcd {
      
 	 return mHead;
  }
+ //46. Permutations
+ public static List<List<Integer>> permute(int[] nums) {
+	 List<List<Integer>> dst = new ArrayList<List<Integer>>();
+	 int[] visited = new int[nums.length];
+	 List<Integer>  solution = new ArrayList<Integer>();
+	 permutation_helper(nums,visited,dst,solution);
+	 return dst;
+	 
+ }
+ public static void permutation_helper(int[] nums,int[] visited,List<List<Integer>> list,List<Integer> tar)
+ {
+	 if(tar.size() == nums.length) {
+		 list.add(new ArrayList<Integer>(tar));
+		 return;
+	 }
+	 for(int i=0;i<nums.length;i++)
+	 {
+		 if(visited[i] == 0)
+		 {
+			 tar.add(nums[i]);
+			 visited[i] =1;
+			 permutation_helper(nums,visited,list,tar);
+			 tar.remove(tar.size()-1);
+			 visited[i]=0;
+		 } 
+	 }
+ }
+ //47 Permutations II
+ public static List<List<Integer>> permuteUnique(int[] nums) {
+	 List<List<Integer>> dst = new ArrayList<List<Integer>>();
+	 int[] visited = new int[nums.length];
+	 Arrays.sort(nums);
+	 List<Integer>  solution = new ArrayList<Integer>();
+	 permutationUniqueHelper(nums,visited,dst,solution);
+	 return dst;
+ }
+ public static void permutationUniqueHelper(int[] nums,int[] visited,List<List<Integer>> list,List<Integer> tar)
+ {
+	 if(tar.size() == nums.length) {
+		 list.add(new ArrayList<Integer>(tar));
+		 return;
+	 }
+	 for(int i=0;i<nums.length;i++)
+	 {
+		 if(visited[i] == 0)
+		 {
+			 if(i>0 && nums[i] == nums[i-1] && visited[i-1] ==0)
+			 {
+				 continue;
+			 }
+			 tar.add(nums[i]);
+			 visited[i] =1;
+			 permutationUniqueHelper(nums,visited,list,tar);
+			 tar.remove(tar.size()-1);
+			 visited[i]=0;
+		 } 
+	 }
+ }
+ //31. Next Permutation
+ public static void nextPermutation(int[] nums) {
+     int begin=0,end=0,pos=0;
+     int valid  = 0;
+	 for(int i=nums.length-1;i>0;i--)
+	 {
+		 if(nums[i-1] < nums[i])
+		 {
+			 pos = i-1;
+			 valid =1;
+			 break;
+		 }
+	 }
+	 if(pos<=0 && valid==0) 
+		 {
+		 Arrays.sort(nums);
+		 return;
+		 }
+	 for(int i=nums.length-1;i>pos;i--)
+	 {
+		 if(nums[i]>nums[pos]) 
+		 {
+			end = i;
+			int temp = nums[end];
+			nums[end] = nums[pos];
+			nums[pos]=temp;
+			break;
+		 }	
+	 }
+	 InsertionSort(nums,pos+1,nums.length);
+	 
+ }
  public static void main(String[] args)
 {
-	 ListNode A = new ListNode(2);
-	 ListNode B = new ListNode(1);
-	 ListNode C = new ListNode(4);
-	 ListNode D = new ListNode(3);
-	 ListNode E = new ListNode(6);
-	 ListNode F = new ListNode(5);
-	 A.next = B;
-	 B.next = C;
-	 C.next = D;
-	 D.next = E;
-	 E.next = F;
-	 swapPairs(A);
+	int[] nums = {1,2};
+    nextPermutation(nums);
 }
  public static void printArray(int[] nums)
  {
