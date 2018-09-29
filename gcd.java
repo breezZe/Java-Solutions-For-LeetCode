@@ -1141,10 +1141,107 @@ public class gcd {
 	 InsertionSort(nums,pos+1,nums.length);
 	 
  }
+ //34. Find First and Last Position of Element in Sorted Array
+ public static int[] searchRange(int[] nums, int target) {
+     int[] dst = {-1,-1};
+     int pos = BinarySearch(target,nums);
+    
+     if(pos == -1) 
+     {
+    	 	return dst;
+     }
+     for(int i=pos;i>=0;i--)
+     {
+    	 	if(nums[i] != nums[pos])
+    	 	{
+    	 		break;
+    	 	}
+    	 	else
+    	 	{
+    	 		dst[0]= i;
+    	 	}
+     }
+     for(int i=pos;i<nums.length;i++)
+     {
+    	 	if(nums[i] != nums[pos])
+    	 	{
+    	 		break;
+    	 	}
+    	 	else
+    	 	{
+    	 		dst[1] = i;
+    	 	}
+     }
+     
+     return dst;
+ }
+//39. Combination Sum
+ public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+     List<List<Integer>> dst = new ArrayList<List<Integer>>();
+     List<Integer>  tempList = new ArrayList<Integer>();
+     int st = 0;
+     int rest = target;
+     combinationSumHelper(dst,tempList,candidates,target,st,rest);
+     return dst;
+ }
+ public static void combinationSumHelper(List<List<Integer>> list,List<Integer> tList,int[] nums, int target,int start,int remain)
+ {
+	if(remain <0) return;
+	if(remain ==0) list.add(new ArrayList<Integer>(tList));
+	else
+	{
+		for(int i=start;i<nums.length;i++)
+		{
+			tList.add(nums[i]);
+			combinationSumHelper(list,tList,nums,target,i,remain-nums[i]);
+			tList.remove(tList.size()-1);
+		}
+	}
+	 return; 
+ }
+ public static int sum(int[] nums)
+ {
+	 int sum=0;
+	 for(int i=0;i<nums.length;i++) sum+=nums[i];
+	 return sum;
+ }
+ public static int sum(List<Integer> lst)
+ {
+	 int sum=0;
+	 for(int i=0;i<lst.size();i++) sum+=lst.get(i);
+	 return sum;
+ }
+ //40. Combination Sum II
+ public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
+	 List<List<Integer>> dst = new ArrayList<List<Integer>>();
+     List<Integer>  tempList = new ArrayList<Integer>();
+     Arrays.sort(candidates);
+     int st = 0;
+     int rest = target;
+     combinationSumHelper2(dst,tempList,candidates,target,st,rest);
+     return dst;
+ }
+ public static void combinationSumHelper2(List<List<Integer>> list,List<Integer> tList,int[] nums, int target,int start,int remain)
+ {
+	if(remain <0) return;
+	if(remain ==0) list.add(new ArrayList<Integer>(tList));
+	else
+	{
+		for(int i=start;i<nums.length;i++)
+		{
+			if(i>start && nums[i]==nums[i-1]) continue;
+			tList.add(nums[i]);
+			combinationSumHelper2(list,tList,nums,target,i+1,remain-nums[i]);
+			tList.remove(tList.size()-1);
+		}
+	}
+	 return; 
+ }
  public static void main(String[] args)
 {
-	int[] nums = {1,2};
-    nextPermutation(nums);
+	int[] nums = {10,1,2,7,6,1,5};
+	int target = 8;
+    combinationSum2(nums,8);
 }
  public static void printArray(int[] nums)
  {
