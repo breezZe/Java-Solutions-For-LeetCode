@@ -1237,6 +1237,30 @@ public class gcd {
 	}
 	 return; 
  }
+//33. Search in Rotated Sorted Array
+ public static int search(int[] nums, int target) {
+     for(int i=0;i<nums.length;i++)
+         if(nums[i]==target) return i;
+      return -1;
+  }
+ //41. First Missing Positive
+ public static int firstMissingPositive(int[] nums) {
+	  int dst=0;
+	     Arrays.sort(nums);
+	     if(nums.length ==0) return 1;
+	     if(nums[0]>1) return 1;
+	     for(int i=0;i<nums.length;i++)
+	     {
+	    	 	if(nums[i]<=1) continue;
+	    	 	if(i>0 &&(nums[i] - nums[i-1])>1) 
+	    	 	{
+	    	 		if(nums[i-1]<=0) return 1;
+	    	 		else
+	    	 			return nums[i-1]+1;
+	    	 	}
+	     }
+	     return nums[nums.length-1]+1;
+ }
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
@@ -1265,9 +1289,9 @@ public class gcd {
  }
  public static void main(String[] args)
 {
-	int[] nums = {10,1,2,7,6,1,5};
+	int[] nums = {100,-1};
 	int target = 8;
-    combinationSum2(nums,8);
+    System.out.println(firstMissingPositive(nums));
 }
  public static void printArray(int[] nums)
  {
