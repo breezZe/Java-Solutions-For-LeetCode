@@ -1304,13 +1304,56 @@ public class gcd {
      return reach >= n - 1;
  }
  //45. Jump Game II
- public static boolean Jump(int[] nums) {
-     int n = nums.length, reach = 0;
-     for (int i = 0; i < n; ++i) {
-         if (i > reach || reach >= n - 1) break;
-         reach = Math.max(reach, i + nums[i]);
+ public static int Jump(int[] nums) {
+     int res = 0, n = nums.length, last = 0, cur = 0;
+     for (int i = 0; i < n - 1; ++i) {
+         cur = Math.max(cur, i + nums[i]);
+         if (i == last) {
+             last = cur;
+             ++res;
+             if (cur >= n - 1) break;
+         }
      }
-     return reach >= n - 1;
+     return res;
+ }
+
+ //54. Spiral Matrix
+ public static List<Integer> spiralOrder(int[][] matrix) {
+	 myNode direction = new myNode(0,1);
+     List<Integer> dst = new ArrayList<Integer>();
+     if(matrix.length==0) return dst;
+     int cnt=0;
+     int i=0,j=0,row_s=0,col_s=0;
+     int size = matrix.length*matrix[0].length;
+     int row=matrix.length;
+     int col = matrix[0].length;
+     while(cnt<size)
+     {
+    	 	if(j>=col-1 && direction.a==0 && direction.b==1) {
+    	 		direction.set(1,0);
+    	 		row_s++;
+    	 	}
+    	 	else if(i>=row-1 && direction.a==1 && direction.b==0)
+    	 	{
+    	 		direction.set(0,-1);
+    	 		col--;
+    	 	}
+    	 	else if(j<=col_s && direction.a == 0 && direction.b == -1)
+    	 	{
+    	 		direction.set(-1,0);
+    	 		row--;
+    	 	}
+    	 	else if(i<=row_s && direction.a == -1 && direction.b == 0)
+    	 	{
+    	 		direction.set(0, 1);
+    	 		col_s++;
+    	 	}
+    	 	dst.add(matrix[i][j]);
+    	 	i+=direction.a;
+    	 	j+=direction.b;
+    	 	cnt++;
+     }
+     return dst;
  }
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
@@ -1340,8 +1383,9 @@ public class gcd {
  }
 public static void main(String[] args)
 {
-	int[] nums = {3,2,5,0,4};
-    System.out.println(canJump(nums));
+	int[][] nums = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
+    System.out.println("len="+nums.length+","+nums[0].length);
+    spiralOrder(nums);
    
 }
  public static void printArray(int[] nums)

@@ -16,4 +16,9 @@ public class myNode {
 	{
 		b = y;
 	}
+	public void set(int x,int y)
+	{
+		a=x;
+		b=y;
+	}
 }
