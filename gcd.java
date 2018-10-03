@@ -1245,21 +1245,72 @@ public class gcd {
   }
  //41. First Missing Positive
  public static int firstMissingPositive(int[] nums) {
-	  int dst=0;
 	     Arrays.sort(nums);
 	     if(nums.length ==0) return 1;
-	     if(nums[0]>1) return 1;
+	     else if(nums[0]>1) return 1;
 	     for(int i=0;i<nums.length;i++)
 	     {
 	    	 	if(nums[i]<=1) continue;
 	    	 	if(i>0 &&(nums[i] - nums[i-1])>1) 
 	    	 	{
-	    	 		if(nums[i-1]<=0) return 1;
+	    	 		if(nums[i-1]<=0) 
+	    	 			return 1;
 	    	 		else
 	    	 			return nums[i-1]+1;
 	    	 	}
 	     }
 	     return nums[nums.length-1]+1;
+ }
+ //42. Trapping Rain Water
+ //This seems to be a "()" matching problem. A decline means a "(",and a ascend means a ")".
+ //Using two pointers
+ public static int trap(int[] height) {
+	 int left=0,right = height.length-1;
+	 int left_max=0,right_max=0;
+	 int dst=0;
+	 while(left<right)
+	 {
+		 if(height[left]<height[right])
+		 {
+			 if(height[left]>=left_max )
+				left_max = height[left];
+			else
+				dst += (left_max - height[left]);
+	           
+			++left;
+		 }
+		 else
+		 {
+			 if(height[right]>=right_max )
+					right_max = height[right];
+				else
+					dst += (right_max - height[right]);
+		           
+				--right; 
+		 }
+	 }
+	 return dst;
+ }
+ //55.Jump Game
+ //Comment. It's a little bit confusing firstly I saw this problem. I couldn't figure out what the index means. 
+ //And it means, if you are at index 3, and nums[3] = 5, then your max reach point should be 3+5 =8. If nums[10] =8, ok, it's true, 
+ //because after you jump 5 steps, the next 7 round, you could jump 0 step.
+ public static boolean canJump(int[] nums) {
+     int n = nums.length, reach = 0;
+     for (int i = 0; i < n; ++i) {
+         if (i > reach || reach >= n - 1) break;
+         reach = Math.max(reach, i + nums[i]);
+     }
+     return reach >= n - 1;
+ }
+ //45. Jump Game II
+ public static boolean Jump(int[] nums) {
+     int n = nums.length, reach = 0;
+     for (int i = 0; i < n; ++i) {
+         if (i > reach || reach >= n - 1) break;
+         reach = Math.max(reach, i + nums[i]);
+     }
+     return reach >= n - 1;
  }
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
@@ -1287,18 +1338,19 @@ public class gcd {
     	 	nums1[k--] = nums2[j--];
     	 }
  }
- public static void main(String[] args)
+public static void main(String[] args)
 {
-	int[] nums = {100,-1};
-	int target = 8;
-    System.out.println(firstMissingPositive(nums));
+	int[] nums = {3,2,5,0,4};
+    System.out.println(canJump(nums));
+   
 }
  public static void printArray(int[] nums)
  {
 	 for(int i=0;i<nums.length;i++)
 	 {
-		 System.out.print(nums[i]);
+		 System.out.print(nums[i]+",");
 	 }
+	 System.out.println("");
  }
 	
 }
