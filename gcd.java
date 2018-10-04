@@ -1381,6 +1381,15 @@ public class gcd {
     	 	nums1[k--] = nums2[j--];
     	 }
  }
+ // 867, Transpose Matrix
+ public static int[][] transpose(int[][] A) {
+     int M = A.length, N = A[0].length;
+     int[][] B = new int[N][M];
+     for (int j = 0; j < N; j++)
+         for (int i = 0; i < M; i++)
+             B[j][i] = A[i][j];
+     return B;
+ }
 public static void main(String[] args)
 {
 	int[][] nums = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
