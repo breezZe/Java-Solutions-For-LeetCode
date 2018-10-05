@@ -1355,6 +1355,44 @@ public class gcd {
      }
      return dst;
  }
+ //59. Spiral Matrix II
+ public static int[][] generateMatrix(int n) {
+	 if(n<=0) return new int[0][0];
+	 int[][] dst = new int[n][n];
+	 int size = n*n;
+	 int cnt=0;
+	 int i=0,j=0,row_s=0,col_s=0;
+	 myNode direction = new myNode(0,1);
+	 int row=n,col=n;
+	 
+	 while(cnt<size)
+     {
+    	 	if(j>=col-1 && direction.a==0 && direction.b==1) {
+    	 		direction.set(1,0);
+    	 		row_s++;
+    	 	}
+    	 	else if(i>=row-1 && direction.a==1 && direction.b==0)
+    	 	{
+    	 		direction.set(0,-1);
+    	 		col--;
+    	 	}
+    	 	else if(j<=col_s && direction.a == 0 && direction.b == -1)
+    	 	{
+    	 		direction.set(-1,0);
+    	 		row--;
+    	 	}
+    	 	else if(i<=row_s && direction.a == -1 && direction.b == 0)
+    	 	{
+    	 		direction.set(0, 1);
+    	 		col_s++;
+    	 	}
+    	 	dst[i][j] = cnt+1;
+    	 	i+=direction.a;
+    	 	j+=direction.b;
+    	 	cnt++;
+     }
+	 return dst;
+ }
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
@@ -1393,8 +1431,9 @@ public class gcd {
 public static void main(String[] args)
 {
 	int[][] nums = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
-    System.out.println("len="+nums.length+","+nums[0].length);
-    spiralOrder(nums);
+    //System.out.println("len="+nums.length+","+nums[0].length);
+   // spiralOrder(nums);
+    generateMatrix(0);
    
 }
  public static void printArray(int[] nums)
