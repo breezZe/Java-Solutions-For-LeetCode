@@ -1316,7 +1316,38 @@ public class gcd {
      }
      return res;
  }
-
+//49. Group Anagrams
+ public static List<List<String>> groupAnagrams(String[] strs) {
+	 List<List<String>> dst = new ArrayList<List<String>>();
+	 Map<Integer,List<String>> map = new HashMap<>();
+	 
+	 for(String str:strs)
+	 {
+		 int[] code = new int[26];
+		 for(char ch : str.toCharArray())
+		 {
+			 code[ch-'a']++;
+		 }
+		 int temp = Arrays.hashCode(code);
+		 if(map.containsKey(temp))
+		 {
+			 List<String> strList = map.get(temp);
+			 strList.add(str);
+			 map.put(temp, strList);
+		 }
+		 else
+		 {
+			 List<String> list = new ArrayList<>();
+             list.add(str);
+             map.put(temp,list);
+		 }
+	 }
+	 for(int key:map.keySet())
+	 {
+		 dst.add(map.get(key));
+	 }
+	 return dst;
+ }
  //54. Spiral Matrix
  public static List<Integer> spiralOrder(int[][] matrix) {
 	 myNode direction = new myNode(0,1);
@@ -1418,6 +1449,28 @@ public class gcd {
     	 {
     	 	nums1[k--] = nums2[j--];
     	 }
+ }
+ //242. Valid Anagrams
+ public static boolean isAnagram(String s, String t) {
+     int[] code1 = new int[26];
+     int[] code2 = new int[26];
+     if(s.length() !=t.length()) return false;
+     for(char c:s.toCharArray()) 
+     {
+    	 	code1[c - 'a']++;
+     }
+     for(char c:t.toCharArray()) 
+     {
+    	 	code2[c - 'a']++;
+     }
+     int i=0;
+     for( i=0;i<26;i++)
+     {
+    	 	if(code1[i] == code2[i]) continue;
+    	 	else break;
+     }
+     if(i == 26)  return true;
+     else return false;
  }
  // 867, Transpose Matrix
  public static int[][] transpose(int[][] A) {
