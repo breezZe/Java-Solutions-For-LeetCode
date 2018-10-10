@@ -1087,6 +1087,7 @@ public class gcd {
 	 permutationUniqueHelper(nums,visited,dst,solution);
 	 return dst;
  }
+ // @Tag: Back_Tracking
  public static void permutationUniqueHelper(int[] nums,int[] visited,List<List<Integer>> list,List<Integer> tar)
  {
 	 if(tar.size() == nums.length) {
@@ -1348,7 +1349,111 @@ public class gcd {
 	 }
 	 return dst;
  }
- //54. Spiral Matrix
+ // 51, N-Queens
+ // Note: Queen. In chess, a queen can 'eat' any other character in the same row, column or 
+ public static List<List<String>> solveNQueens(int n) {
+     List<List<String>> dst = new ArrayList<>();
+	 int[][] chessboard = new int[n][n];
+	 List<mPoint> queens = new ArrayList<>();
+	 List<List<mPoint>> solution = new ArrayList<>();
+	 queensHelper(dst,chessboard,solution,queens,new mPoint(0,0));
+     return dst;
+ }
+public static void queensHelper(List<List<String>> target,int[][] nums, List<List<mPoint>> results, List<mPoint> points, mPoint index)
+{
+	int n = nums.length;
+	if(points.size() == n)
+	{
+		results.add(new ArrayList<mPoint>(points));
+		getSolution(target,nums);
+		return;
+	}
+	for(int i=index.x;i<n;i++)
+	 {
+		 for(int j=index.y;j<n;j++)
+		 {
+			 if(nums[i][j] == 0 ) 
+			 {
+				 points.add(new mPoint(i,j));
+				 updateChessBoard(nums,points);
+				 queensHelper(target,nums,results,points,new mPoint(index.x+1,0));
+				 points.remove(points.size()-1);
+				 updateChessBoard(nums,points);
+			 }
+			 else
+			 {
+				 continue;
+			 }
+		 }
+	 }
+}
+public static void updateChessBoard(int[][] nums,List<mPoint> points)
+ {
+	 int n = nums.length;
+	 for(int i=0;i<n;i++)
+	 {
+		 for(int j=0;j<n;j++)
+			 nums[i][j] = 0;
+	 }
+	 for(mPoint point:points)
+	 {
+		 for(int i=0;i<nums.length;i++)
+		 {
+			 nums[i][point.y] = -1;
+			 nums[point.x][i] = -1;
+		 }
+		 for(int i=point.x,j=point.y;i<n && j<n;i++,j++)
+		 {
+			 nums[i][j] = -1;
+		 }
+		 for(int i=point.x,j=point.y;i>-1 && j<n;i--,j++)
+		 {
+			 nums[i][j] = -1;
+		 }
+		 for(int i=point.x,j=point.y;i<n && j>-1;i++,j--)
+		 {
+			 nums[i][j] = -1;
+		 }
+		 for(int i=point.x,j=point.y;i>-1 && j>-1;i--,j--)
+		 {
+			 nums[i][j] = -1;
+		 }
+	 }
+	 for(mPoint point:points)
+	 {
+		 nums[point.x][point.y] = 1;
+	 }
+ }
+public static boolean checkChessBoard(int[][] nums,int n)
+{
+	if(n>nums.length -1 ) return true;
+	for(int i=0;i<nums.length;i++)
+	{
+		if(nums[n][i] == 0)
+			return true;
+	}
+	return false;
+}
+public static void getSolution(List<List<String>> dst, int[][] nums)
+{
+	int n=nums.length;
+	List<String> strlist = new ArrayList<>();
+	
+	 for(int i=0;i<n;i++)
+	 {
+		 StringBuffer strbuff = new StringBuffer();
+		 for(int j=0;j<n;j++)
+		 {
+			 if(nums[i][j] == 1)
+				 strbuff.append('Q');
+			 else
+				 strbuff.append('.');	 
+		 }
+		 strlist.add(strbuff.toString());
+	 } 
+	 dst.add(strlist);
+}
+//54. Spiral Matrix
  public static List<Integer> spiralOrder(int[][] matrix) {
 	 myNode direction = new myNode(0,1);
      List<Integer> dst = new ArrayList<Integer>();
@@ -1458,7 +1563,7 @@ public class gcd {
      for(char c:s.toCharArray()) 
      {
     	 	code1[c - 'a']++;
-     }
+     } 
      for(char c:t.toCharArray()) 
      {
     	 	code2[c - 'a']++;
@@ -1486,7 +1591,8 @@ public static void main(String[] args)
 	int[][] nums = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
     //System.out.println("len="+nums.length+","+nums[0].length);
    // spiralOrder(nums);
-    generateMatrix(0);
+    solveNQueens(5);
+    
    
 }
  public static void printArray(int[] nums)
