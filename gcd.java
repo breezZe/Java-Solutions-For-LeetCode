@@ -1350,8 +1350,10 @@ public class gcd {
 	 return dst;
  }
  // 51, N-Queens
- // Note: Queen. In chess, a queen can 'eat' any other character in the same row, column or 
- public static List<List<String>> solveNQueens(int n) {
+ // Note: Queen. In chess, a queen can 'eat' any other character in the same row, column or diag
+ /** Solution exceeds time.
+  **/
+ public static List<List<String>> solveNQueens_TIME_EXCEED(int n) {
      List<List<String>> dst = new ArrayList<>();
 	 int[][] chessboard = new int[n][n];
 	 List<mPoint> queens = new ArrayList<>();
@@ -1359,99 +1361,151 @@ public class gcd {
 	 queensHelper(dst,chessboard,solution,queens,new mPoint(0,0));
      return dst;
  }
-public static void queensHelper(List<List<String>> target,int[][] nums, List<List<mPoint>> results, List<mPoint> points, mPoint index)
-{
-	int n = nums.length;
-	if(points.size() == n)
-	{
-		results.add(new ArrayList<mPoint>(points));
-		getSolution(target,nums);
-		return;
-	}
-	for(int i=index.x;i<n;i++)
-	 {
-		 for(int j=index.y;j<n;j++)
-		 {
-			 if(nums[i][j] == 0 ) 
-			 {
-				 points.add(new mPoint(i,j));
-				 updateChessBoard(nums,points);
-				 queensHelper(target,nums,results,points,new mPoint(index.x+1,0));
-				 points.remove(points.size()-1);
-				 updateChessBoard(nums,points);
-			 }
-			 else
-			 {
-				 continue;
-			 }
-		 }
-	 }
-}
-public static void updateChessBoard(int[][] nums,List<mPoint> points)
+ public static void queensHelper(List<List<String>> target,int[][] nums, List<List<mPoint>> results, List<mPoint> points, mPoint index)
  {
-	 int n = nums.length;
-	 for(int i=0;i<n;i++)
-	 {
-		 for(int j=0;j<n;j++)
-			 nums[i][j] = 0;
-	 }
-	 for(mPoint point:points)
-	 {
-		 for(int i=0;i<nums.length;i++)
-		 {
-			 nums[i][point.y] = -1;
-			 nums[point.x][i] = -1;
-		 }
-		 for(int i=point.x,j=point.y;i<n && j<n;i++,j++)
-		 {
-			 nums[i][j] = -1;
-		 }
-		 for(int i=point.x,j=point.y;i>-1 && j<n;i--,j++)
-		 {
-			 nums[i][j] = -1;
-		 }
-		 for(int i=point.x,j=point.y;i<n && j>-1;i++,j--)
-		 {
-			 nums[i][j] = -1;
-		 }
-		 for(int i=point.x,j=point.y;i>-1 && j>-1;i--,j--)
-		 {
-			 nums[i][j] = -1;
-		 }
-	 }
-	 for(mPoint point:points)
-	 {
-		 nums[point.x][point.y] = 1;
-	 }
+ 	int n = nums.length;
+ 	if(points.size() == n)
+ 	{
+ 		results.add(new ArrayList<mPoint>(points));
+ 		getSolution(target,nums);
+ 		return;
+ 	}
+ 	for(int i=index.x;i<n;i++)
+ 	 {
+ 		 for(int j=index.y;j<n;j++)
+ 		 {
+ 			 if(nums[i][j] == 0 ) 
+ 			 {
+ 				 points.add(new mPoint(i,j));
+ 				 updateChessBoard(nums,points);
+ 				 queensHelper(target,nums,results,points,new mPoint(index.x+1,0));
+ 				 points.remove(points.size()-1);
+ 				 updateChessBoard(nums,points);
+ 			 }
+ 			 else
+ 			 {
+ 				 continue;
+ 			 }
+ 		 }
+ 	 }
  }
-public static boolean checkChessBoard(int[][] nums,int n)
-{
-	if(n>nums.length -1 ) return true;
-	for(int i=0;i<nums.length;i++)
-	{
-		if(nums[n][i] == 0)
-			return true;
-	}
-	return false;
-}
-public static void getSolution(List<List<String>> dst, int[][] nums)
-{
-	int n=nums.length;
-	List<String> strlist = new ArrayList<>();
-	
-	 for(int i=0;i<n;i++)
+ public static void updateChessBoard(int[][] nums,List<mPoint> points)
+  {
+ 	 int n = nums.length;
+ 	 for(int i=0;i<n;i++)
+ 	 {
+ 		 for(int j=0;j<n;j++)
+ 			 nums[i][j] = 0;
+ 	 }
+ 	 for(mPoint point:points)
+ 	 {
+ 		 for(int i=0;i<nums.length;i++)
+ 		 {
+ 			 nums[i][point.y] = -1;
+ 			 nums[point.x][i] = -1;
+ 		 }
+ 		 for(int i=point.x,j=point.y;i<n && j<n;i++,j++)
+ 		 {
+ 			 nums[i][j] = -1;
+ 		 }
+ 		 for(int i=point.x,j=point.y;i>-1 && j<n;i--,j++)
+ 		 {
+ 			 nums[i][j] = -1;
+ 		 }
+ 		 for(int i=point.x,j=point.y;i<n && j>-1;i++,j--)
+ 		 {
+ 			 nums[i][j] = -1;
+ 		 }
+ 		 for(int i=point.x,j=point.y;i>-1 && j>-1;i--,j--)
+ 		 {
+ 			 nums[i][j] = -1;
+ 		 }
+ 	 }
+ 	 for(mPoint point:points)
+ 	 {
+ 		 nums[point.x][point.y] = 1;
+ 	 }
+  }
+ public static boolean checkChessBoard(int[][] nums,int n)
+ {
+ 	if(n>nums.length -1 ) return true;
+ 	for(int i=0;i<nums.length;i++)
+ 	{
+ 		if(nums[n][i] == 0)
+ 			return true;
+ 	}
+ 	return false;
+ }
+ public static void getSolution(List<List<String>> dst, int[][] nums)
+ {
+ 	int n=nums.length;
+ 	List<String> strlist = new ArrayList<>();
+ 	
+ 	 for(int i=0;i<n;i++)
+ 	 {
+ 		 StringBuffer strbuff = new StringBuffer();
+ 		 for(int j=0;j<n;j++)
+ 		 {
+ 			 if(nums[i][j] == 1)
+ 				 strbuff.append('Q');
+ 			 else
+ 				 strbuff.append('.');	 
+ 		 }
+ 		 strlist.add(strbuff.toString());
+ 	 } 
+ 	 dst.add(strlist);
+ }
+	 public static List<List<String>> solveNQueens(int n) {
+		  char[][] board = new char[n][n];
+	      for(int i = 0; i < n; i++)
+	          for(int j = 0; j < n; j++)
+	              board[i][j] = '.';
+	      List<List<String>> res = new ArrayList<List<String>>();
+	      dfs_NQueens(board, 0, res);
+	      return res;
+	 }
+	 public static void dfs_NQueens(char[][] board,int colIndex, List<List<String>> res)
 	 {
-		 StringBuffer strbuff = new StringBuffer();
-		 for(int j=0;j<n;j++)
+		 if(colIndex == board.length) {
+	         res.add(construct(board));
+	         return;
+	     }
+		 for(int i=0;i<board.length;i++)
 		 {
-			 if(nums[i][j] == 1)
-				 strbuff.append('Q');
-			 else
-				 strbuff.append('.');	 
+			 if(isValid(board,i,colIndex))
+			 {
+				 board[i][colIndex] = 'Q';
+	             dfs_NQueens(board, colIndex + 1, res);
+	             board[i][colIndex] = '.';
+			 }
 		 }
-		 strlist.add(strbuff.toString());
-	 } 
-	 dst.add(strlist);
+		 
+	 }
+	 public static boolean isValid(char[][] board,int x, int y)
+	 {
+		   for(int i = 0; i < board.length; i++) {
+	           for(int j = 0; j < y; j++) {
+	               if(board[i][j] == 'Q' && (x + j == y + i || x + y == i + j || x == i))
+	                   return false;
+	           }
+	       }
+	       
+	       return true;
+	 }
+	 private static List<String> construct(char[][] board)
+	 {
+		 List<String> res = new LinkedList<String>();
+	     for(int i = 0; i < board.length; i++) {
+	         String s = new String(board[i]);
+	         res.add(s);
+	     }
+	     return res;
+	 }
+//52. N-Queens II
+public static int totalNQueens(int n) {
+	if(n==1) return 1;
+	if(n<4) return 0;	
+	return solveNQueens(n).size();	        
 }
 //54. Spiral Matrix
  public static List<Integer> spiralOrder(int[][] matrix) {
@@ -1534,7 +1588,7 @@ public static void getSolution(List<List<String>> dst, int[][] nums)
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
      return dst;
  }
-//88， Merge Sorted Array
+//88锛� Merge Sorted Array
  public static void merge(int[] nums1, int m, int[] nums2, int n) {
      int i=m-1;
      int j=n-1;
