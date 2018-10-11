@@ -1,6 +1,8 @@
 package my.first.test;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -340,6 +342,20 @@ public class gcd {
          }
          return true;
      }
+// 29. Sqrt(x)
+     public static int mySqrt(int x) {
+         if (x==0) return 0;
+         int left=1;int right=x;
+         while(left<=right)
+         {
+             int mid = left+(right-left)/2;
+             if(mid > x/mid) right = mid-1;
+             else if(mid < x/mid) left = mid + 1;
+             else return mid;
+         }
+         return right;
+         
+     }
      public static List<Integer> selfDividingNumbers(int left, int right) {
          List<Integer> n = new ArrayList<Integer>();
          for(int pivot = left;pivot <right;pivot++)
@@ -636,6 +652,23 @@ public class gcd {
     	 		sum+= mapAB.get(Key) * mapCD.get(-Key);
      }
 	 return sum;
+ }
+ //486.Predict the winner
+ public static  boolean PredictTheWinner(int[] nums) {
+	 if (nums == null) { return true; }
+	    int n = nums.length;
+	    if ((n & 1) == 0) { return true; } 
+	    int[] dp = new int[n];
+	    for (int i = n - 1; i >= 0; i--) {
+	        for (int j = i; j < n; j++) {
+	            if (i == j) {
+	                dp[i] = nums[i];
+	            } else {
+	                dp[j] = Math.max(nums[i] - dp[j], nums[j] - dp[j - 1]);
+	            }
+	        }
+	    }
+	    return dp[n - 1] >= 0;
  }
  //230. Kth Smallest Element in a BST
  public static int kthSmallest(TreeNode root, int k) {
@@ -1358,12 +1391,12 @@ public class gcd {
 	 int[][] chessboard = new int[n][n];
 	 List<mPoint> queens = new ArrayList<>();
 	 List<List<mPoint>> solution = new ArrayList<>();
-	 queensHelper(dst,chessboard,solution,queens,new mPoint(0,0));
+	 queensHelper(dst,chessboard,solution,queens,new mPoint(0,0)); 
      return dst;
  }
  public static void queensHelper(List<List<String>> target,int[][] nums, List<List<mPoint>> results, List<mPoint> points, mPoint index)
  {
- 	int n = nums.length;
+ 	int n = nums.length; 
  	if(points.size() == n)
  	{
  		results.add(new ArrayList<mPoint>(points));
@@ -1545,6 +1578,66 @@ public static int totalNQueens(int n) {
      }
      return dst;
  }
+ //56. Merge Intervals
+ public  List<Interval> merge(List<Interval> intervals) {
+	 if (intervals.size() <= 1)
+         return intervals;
+     
+     Collections.sort(intervals,new Comparator<Interval>(){
+         public int compare(Interval o1, Interval o2) {
+             if ( o1.start == o2.start )
+                 return o1.end - o2.end;
+             else
+                 return o1.start - o2.start;
+         }
+     });
+     
+     List<Interval> res = new ArrayList<>(); // Result list.
+     Interval prev = intervals.get(0),cur; // Prev is always the one for the next interval to compare.
+     
+     for (int i = 1; i < intervals.size(); i++) {
+         cur = intervals.get(i);
+         if (prev.end >= cur.start) { // Overlapped case.
+             prev = new Interval(prev.start, Math.max(prev.end, cur.end));
+         }
+         else {
+             res.add(prev);
+             prev = cur;
+         }
+     }
+     res.add(prev); // The last one to add to the result list.
+     
+     return res;
+     
+ }
+ //57. Insert Interval
+ public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+     int j=0;
+	 for(;j<intervals.size();j++)
+     {
+    	 	if(intervals.get(j).start > newInterval.start)
+    	 	{
+    	 		break;
+    	 	}
+     }
+	 intervals.add(j, newInterval);
+	 List<Interval> res = new ArrayList<>(); 
+     Interval prev = intervals.get(0),cur; 
+     
+     for (int i = 1; i < intervals.size(); i++) {
+         cur = intervals.get(i);
+         if (prev.end >= cur.start) { 
+             prev = new Interval(prev.start, Math.max(prev.end, cur.end));
+         }
+         else {
+             res.add(prev);
+             prev = cur;
+         }
+     }
+     res.add(prev); // The last one to add to the result list.
+     
+     return res;
+ }
  //59. Spiral Matrix II
  public static int[][] generateMatrix(int n) {
 	 if(n<=0) return new int[0][0];
@@ -1588,7 +1681,7 @@ public static int totalNQueens(int n) {
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
      return dst;
  }
-//88锛� Merge Sorted Array
+//88. Merge Sorted Array
  public static void merge(int[] nums1, int m, int[] nums2, int n) {
      int i=m-1;
      int j=n-1;
@@ -1631,6 +1724,25 @@ public static int totalNQueens(int n) {
      if(i == 26)  return true;
      else return false;
  }
+ //492. Construct the Rectangle
+ public static int[] constructRectangle(int area) {
+     int len = mySqrt(area);
+     int[] res = new int[2];
+     if(len * len == area) {
+    	 	res[0] = len;res[1]=len;
+    	 	return res;
+     }
+     for(int i=len+1;i<=area;i++)
+     {
+    	 	if( area%i == 0)
+    	 	{
+    	 		res[0]=i;
+    	 		res[1] = area/i;
+    	 		break;
+    	 	}
+     }
+     return res;
+ }
  // 867, Transpose Matrix
  public static int[][] transpose(int[][] A) {
      int M = A.length, N = A[0].length;
@@ -1642,12 +1754,12 @@ public static int totalNQueens(int n) {
  }
 public static void main(String[] args)
 {
-	int[][] nums = {{1,2,3,4},{5,6,7,8},{9,10,11,12}};
+	int nums[] = {1,5,233,7};
     //System.out.println("len="+nums.length+","+nums[0].length);
    // spiralOrder(nums);
-    solveNQueens(5);
+   // solveNQueens(5);
     
-   
+    System.out.println(PredictTheWinner(nums));
 }
  public static void printArray(int[] nums)
  {
