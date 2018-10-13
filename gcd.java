@@ -1676,6 +1676,43 @@ public static int totalNQueens(int n) {
      }
 	 return dst;
  }
+ //60.Permutation Sequence
+ public static String getPermutation(int n, int k) {
+	 int[] FactorialTable = new int[10];
+	 for(int i=0;i<10;i++)
+		 FactorialTable[i] = Factorial(i);
+	 StringBuffer dst =new StringBuffer();
+	 List<Integer> index = new ArrayList<>();
+	 for(int i=1;i<10;i++)
+	 {
+		 index.add(i);
+	 }
+     getPermutationHelper(FactorialTable,index,dst,n,k);
+     return dst.toString();
+ }
+ public static void getPermutationHelper(int[] FactorialTable,List<Integer> index,StringBuffer strbuff,int n,int k)
+ {
+	 if(n==1) {
+		 strbuff.append(index.get(0));
+		 return;
+	 }
+	 int divider = FactorialTable[n-1];
+	 int pos = 0;
+	 while(k>divider)
+     {
+    	 	pos++;
+    	 	k = k - divider;
+     }
+     strbuff.append(index.get(pos));
+     index.remove(pos);
+     getPermutationHelper(FactorialTable,index,strbuff,n-1,k);
+ }
+ public static int Factorial(int n)
+ {
+	 if(n==1||n==0) return 1;
+	 else
+		 return n*Factorial(n-1);
+ }
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
@@ -1758,8 +1795,8 @@ public static void main(String[] args)
     //System.out.println("len="+nums.length+","+nums[0].length);
    // spiralOrder(nums);
    // solveNQueens(5);
-    
-    System.out.println(PredictTheWinner(nums));
+    System.out.println(Factorial(9));
+
 }
  public static void printArray(int[] nums)
  {
