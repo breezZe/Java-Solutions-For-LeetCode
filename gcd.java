@@ -21,6 +21,12 @@ public class gcd {
 		int r= p%q;
 		return my_GCD(q,r);
 	}
+	public static long my_GCD(long p, long q)
+	{
+		if(q==0) return p;
+		long r= p%q;
+		return my_GCD(q,r);
+	}
 	public static void hello()
 	{
 		System.out.println("good!");
@@ -1729,8 +1735,8 @@ public static int totalNQueens(int n) {
      tail = p;
      tail.next = head;
      p=head;
-     if(k>size) k=k-size;
-     for(int i=0;i<=(size-k);i++)
+     if(k>size) k=k % size;
+     for(int i=0;i<(size-k);i++)
      {
     	 	p=p.next;
      }
@@ -1742,6 +1748,29 @@ public static int totalNQueens(int n) {
      p.next = null;
      return res;
 
+ }
+ //62. Unique Paths
+ public static int uniquePaths(int m, int n) {
+     if(m==1 || n==1) return 1;
+     if(m<n) 
+     {
+    	 	int temp=n;
+    	 	n=m;
+    	 	m=temp;
+     }
+     int right = m-1;
+     int down =  n-1;
+     int TotalStep = right + down;
+     long product   = 1;
+     for(int i=TotalStep;i>right;i--)
+     {
+    	 	product *= i;
+     }
+     long t = Factorial(down);
+     long divider = my_GCD(product,t);
+     t = t / divider;
+     product = product/divider;
+     return (int)(product / t);
  }
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
@@ -1822,17 +1851,7 @@ public static int totalNQueens(int n) {
 public static void main(String[] args)
 {
 	int nums[] = {1,5,233,7};
-    //System.out.println("len="+nums.length+","+nums[0].length);
-   // spiralOrder(nums);
-   // solveNQueens(5);
-	ListNode head = new ListNode(0);
-	ListNode p1 = new ListNode(1);
-	ListNode p2 = new ListNode(2);
-	head.next = p1;
-	p1.next = p2;
-	rotateRight(head,2);
-    System.out.println(Factorial(9));
-
+    System.out.println(uniquePaths(10,10));
 }
  public static void printArray(int[] nums)
  {
