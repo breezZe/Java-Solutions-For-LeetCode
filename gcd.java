@@ -1713,6 +1713,36 @@ public static int totalNQueens(int n) {
 	 else
 		 return n*Factorial(n-1);
  }
+ //61. Rotate List
+ public static ListNode rotateRight(ListNode head, int k) {
+	 if(head==null) return null;
+     ListNode tail = new ListNode(0);
+     ListNode p = head;
+     ListNode res = head;
+     int size = 1;
+     while(p.next != null)
+     {
+    	 	size++;
+    	 	p=p.next;
+     }
+     if (k == size) return head;
+     tail = p;
+     tail.next = head;
+     p=head;
+     if(k>size) k=k-size;
+     for(int i=0;i<=(size-k);i++)
+     {
+    	 	p=p.next;
+     }
+     res = p;
+     for(int i=0;i<size-1;i++)
+     {
+    	 	p=p.next;
+     }
+     p.next = null;
+     return res;
+
+ }
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
@@ -1795,6 +1825,12 @@ public static void main(String[] args)
     //System.out.println("len="+nums.length+","+nums[0].length);
    // spiralOrder(nums);
    // solveNQueens(5);
+	ListNode head = new ListNode(0);
+	ListNode p1 = new ListNode(1);
+	ListNode p2 = new ListNode(2);
+	head.next = p1;
+	p1.next = p2;
+	rotateRight(head,2);
     System.out.println(Factorial(9));
 
 }
