@@ -1772,6 +1772,68 @@ public static int totalNQueens(int n) {
      product = product/divider;
      return (int)(product / t);
  }
+ //63. Unique Paths II
+ // Stupid Solution Recursive
+ public static int uniquePathsWithObstacles(int[][] obstacleGrid) {
+     int[] sum=new int[1];
+    // List<List<mPoint>> ans = new ArrayList<>();
+     List<mPoint> res = new ArrayList<>();
+     int TotalStep = obstacleGrid.length + obstacleGrid[0].length - 2;
+     mPoint start = new mPoint(0,0);
+     mPoint end = new mPoint(obstacleGrid.length-1,obstacleGrid[0].length-1);
+     if(obstacleGrid.length == 1 && obstacleGrid[0].length == 1)
+     {
+    	 	if(obstacleGrid[0][0] == 0)
+    	 		return 1;
+    	 	else
+    	 		return 0;
+     }
+     if(obstacleGrid[obstacleGrid.length-1][obstacleGrid[0].length-1] == 1) return 0;
+     uniquePathsWithObstaclesHelper(sum,start,obstacleGrid,TotalStep,res);
+     return sum[0]/2;
+ }
+ public static void uniquePathsWithObstaclesHelper(int[] sum,mPoint curPoint,int[][] grid,int StepLeft,List<mPoint> res)
+ {
+	 if( StepLeft == 0)
+	 {
+		 sum[0]++;
+		 return;
+	 }
+	 if(curPoint.x > grid.length-1 || curPoint.y > grid[0].length -1 || grid[curPoint.x][curPoint.y] == 1 || grid[curPoint.x][curPoint.y] == 2 )
+	 {
+		 return;
+	 }
+	 grid[curPoint.x][curPoint.y] = 2;
+	 res.add(curPoint);	 
+	 uniquePathsWithObstaclesHelper(sum,new mPoint(curPoint.x+1,curPoint.y),grid,StepLeft-1,  res);
+	 res.remove(res.size()-1);
+	 grid[curPoint.x][curPoint.y] = 0;
+	 res.add(curPoint);	
+	 uniquePathsWithObstaclesHelper(sum,new mPoint(curPoint.x,curPoint.y+1),grid,StepLeft-1, res);
+	 res.remove(res.size()-1);
+	 grid[curPoint.x][curPoint.y] = 0;
+ }
+ // Brilliant Solution!
+ /**
+  *  While the way to every cell could be two, from LEFT of from UP. 
+  *  If there's M ways to UP-cell, N ways to LEFT-cell, then there will be M+N ways to current cell.
+  *  That's the key.
+  * **/
+ public int uniquePathsWithObstacles_DP(int[][] obstacleGrid) {
+	    int width = obstacleGrid[0].length;
+	    int[] dp = new int[width];
+	    dp[0] = 1;
+	    for (int[] row : obstacleGrid) {
+	        for (int j = 0; j < width; j++) {
+	            if (row[j] == 1)
+	                dp[j] = 0;
+	            else if (j > 0)
+	                dp[j] += dp[j - 1];
+	        }
+	    }
+	    return dp[width - 1];
+	}
+ 
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
@@ -1850,8 +1912,8 @@ public static int totalNQueens(int n) {
  }
 public static void main(String[] args)
 {
-	int nums[] = {1,5,233,7};
-    System.out.println(uniquePaths(10,10));
+	int nums[][] = {{0}};
+    System.out.println(uniquePathsWithObstacles(nums));
 }
  public static void printArray(int[] nums)
  {
