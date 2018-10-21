@@ -15,31 +15,31 @@ import java.util.HashSet;
 public class gcd {
 	
 
-	public static int my_GCD(int p, int q)
+	public   int my_GCD(int p, int q)
 	{
 		if(q==0) return p;
 		int r= p%q;
 		return my_GCD(q,r);
 	}
-	public static long my_GCD(long p, long q)
+	public   long my_GCD(long p, long q)
 	{
 		if(q==0) return p;
 		long r= p%q;
 		return my_GCD(q,r);
 	}
-	public static void hello()
+	public   void hello()
 	{
 		System.out.println("good!");
 	}
 	
-	public static int flip(int x)
+	public   int flip(int x)
 	{
 		if (x==1)
 			return -1;
 		else
 			return 1;
 	}
-	public static void InsertionSort(int[] a,int length)
+	public   void InsertionSort(int[] a,int length)
 	{
 		int i,j;
 		int key;
@@ -56,7 +56,7 @@ public class gcd {
 		//	System.out.println(((double)j/length)*100 + "%");
 		}
 	}
-	public static void InsertionSort(int[] a,int begin,int end)
+	public   void InsertionSort(int[] a,int begin,int end)
 	{
 		int i,j;
 		int key;
@@ -73,7 +73,7 @@ public class gcd {
 		//	System.out.println(((double)j/length)*100 + "%");
 		}
 	}
-	public static void InsertionSort(myNode[] a)
+	public   void InsertionSort(myNode[] a)
 	{
 		int i,j;
 		myNode key;
@@ -90,7 +90,7 @@ public class gcd {
 		}
 	}
 
-	public static int BinarySearch(int key, int[] a)
+	public   int BinarySearch(int key, int[] a)
 	{
 		int lo=0;
 		int hi = a.length-1;
@@ -104,7 +104,7 @@ public class gcd {
 		}
 		return -1;
 	}
-	public static int BinarySearch(int key, int[] a, int start, int end)
+	public   int BinarySearch(int key, int[] a, int start, int end)
 	{
 		int lo=start;
 		int hi = end;
@@ -118,7 +118,7 @@ public class gcd {
 		}
 		return -1;
 	}
-	public static int BinarySearch(char key, char[] a)
+	public   int BinarySearch(char key, char[] a)
 	{
 		int lo=0;
 		int hi = a.length-1;
@@ -132,7 +132,7 @@ public class gcd {
 		}
 		return -1;
 	}
-	public static int BinarySearch(int key, myNode[] a)
+	public   int BinarySearch(int key, myNode[] a)
 	{
 		int lo=0;
 		int hi = a.length-1;
@@ -148,7 +148,7 @@ public class gcd {
 		
 	}
 	
-	public static void ShellSort(Comparable[] a)
+	public   void ShellSort(Comparable[] a)
 	{
 		int N=a.length;
 		int h=1;
@@ -165,17 +165,17 @@ public class gcd {
 		}
 	
 	}
-	public static boolean isMatch(String s, String p) {
+	public   boolean isMatch(String s, String p) {
 		
 	       
 	        return true;
 	    }
-	public static int maxArea(int[] height) {
+	public   int maxArea(int[] height) {
 		
 		return 1;
 	    
 	}
-	public static List<String> getCombinations(String[] numstr,String digits)
+	public   List<String> getCombinations(String[] numstr,String digits)
 	{
 		List<String> str = new ArrayList<String>();
 		if(digits.isEmpty()) return str;
@@ -186,7 +186,7 @@ public class gcd {
 		}
 		return str;
 	}
-	public static List<String> letterCombinations(String digits) {
+	public   List<String> letterCombinations(String digits) {
 	
 	
     LinkedList<String> ans = new LinkedList<String>();
@@ -205,18 +205,18 @@ public class gcd {
 }
 
 
-	private static void exch(Comparable[] a,int i,int j)
+	private   void exch(Comparable[] a,int i,int j)
 	{
 		Comparable t = a[i];
 		a[i]=a[j];
 		a[j]=t;
 	}
 
-	private static boolean less(Comparable v, Comparable w)
+	private   boolean less(Comparable v, Comparable w)
 	{
 		return v.compareTo(w)<0;
 	}
-	public static double F(int N)
+	public   double F(int N)
 	{
 		int n;
 		double[] fibonacci =new double[200];
@@ -229,7 +229,7 @@ public class gcd {
 		return fibonacci[N];
 		
 	}
-	public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+	public   double findMedianSortedArrays(int[] nums1, int[] nums2) {
 	        int i,j,k;
 	        float[] nums3 = new float[nums2.length+nums1.length];
 	        i = j = k =0;
@@ -244,7 +244,7 @@ public class gcd {
 	        return (nums3.length%2==0? ((nums3[nums3.length/2]+nums3[nums3.length/2-1])/2):nums3[nums3.length/2]);
 	    }
 	  
-	public static String convert(String s, int numRows) {
+	public   String convert(String s, int numRows) {
 	        char[] out = s.toCharArray();
 	        char[][] temp = new char[numRows][s.length()];
 	        int dir = 1;
@@ -277,7 +277,7 @@ public class gcd {
 	        //System.out.println(out);
 	        return new String(out);
 	    }
-	public static String convert2(String s, int nRows) {
+	public   String convert2(String s, int nRows) {
 		    char[] c = s.toCharArray();
 		    int len = c.length;
 		    StringBuffer[] sb = new StringBuffer[nRows];
@@ -294,7 +294,7 @@ public class gcd {
 		        sb[0].append(sb[idx]);
 		    return sb[0].toString();
 		}
-	public static boolean isPalindrome(int x)
+	public   boolean isPalindrome(int x)
   {
 
 	    if (x<0 || (x!=0 && x%10==0)) return false;
@@ -306,7 +306,7 @@ public class gcd {
 	    return (x==rev || x==rev/10);
 
   }
-  	public static int[] anagramMappings(int[] A, int[] B) {
+  	public   int[] anagramMappings(int[] A, int[] B) {
 	  
       int[] p = new int[A.length];
       int[] isIndexed = new int[A.length];
@@ -338,7 +338,7 @@ public class gcd {
 	         n.right= mergeTrees(t2.right,t2.right);
 	         return n;
 	 }
-     public static boolean isSelf_Dividing(int x)
+     public   boolean isSelf_Dividing(int x)
      {
          while(x>0) {
              if(x%(x%10) == 0){
@@ -349,7 +349,7 @@ public class gcd {
          return true;
      }
 // 29. Sqrt(x)
-     public static int mySqrt(int x) {
+     public   int mySqrt(int x) {
          if (x==0) return 0;
          int left=1;int right=x;
          while(left<=right)
@@ -362,7 +362,7 @@ public class gcd {
          return right;
          
      }
-     public static List<Integer> selfDividingNumbers(int left, int right) {
+     public   List<Integer> selfDividingNumbers(int left, int right) {
          List<Integer> n = new ArrayList<Integer>();
          for(int pivot = left;pivot <right;pivot++)
          {
@@ -370,7 +370,7 @@ public class gcd {
          }
          return n;
      }
-     public static  int findComplement(int num) {
+     public    int findComplement(int num) {
          int r=0,j=0;
          while(num>0){
         	 r += (1<<j++) * (num%2 == 0 ? 1:0);
@@ -378,7 +378,7 @@ public class gcd {
          }
          return r;
      }
-     public static String reverseString(String s) {
+     public   String reverseString(String s) {
          int i=0,j=s.length()-1;
          char c[] = s.toCharArray();
          for(;i<j;i++,j--)
@@ -389,7 +389,7 @@ public class gcd {
          }
          return String.valueOf(c);
      }
-     public static String[] findWords(String[] words) {
+     public   String[] findWords(String[] words) {
          Map row1 = new HashMap();
          Map row2 = new HashMap();
          Map row3 = new HashMap();
@@ -418,7 +418,7 @@ public class gcd {
          return list.toArray(new String[list.size()]);
  
      }
-     public static boolean judgeSingleLine(char[] c,Map m)
+     public   boolean judgeSingleLine(char[] c,Map m)
      {
     	 for(char cc:c) {
  	 		if(m.containsKey(cc)) {
@@ -430,7 +430,7 @@ public class gcd {
  	 	}
     	 	return true;
      }
-     public static int islandPerimeter(int[][] grid) {
+     public   int islandPerimeter(int[][] grid) {
     	 
     	 int m = grid.length;
     	 int n = grid[0].length;
@@ -462,7 +462,7 @@ public class gcd {
     	 
     }
      // 682: Baseball game
-     public static int calPoints(String[] ops) {
+     public   int calPoints(String[] ops) {
     	 int sum=0;
          int i=0;
          List<Integer> list = new ArrayList<Integer>();
@@ -497,7 +497,7 @@ public class gcd {
 	 return sum; 
      }
      // 575:Distribute Candies
-     public static int distributeCandies(int[] candies) {
+     public   int distributeCandies(int[] candies) {
          int max=0;
          int diffnum=1;
          Arrays.sort(candies);
@@ -510,11 +510,11 @@ public class gcd {
          return diffnum;
      }
      
-     public static String toLowerCase(String str) {
+     public   String toLowerCase(String str) {
     	 return str.toLowerCase();
      }
      //804:Unique Morse Words
-     public static int uniqueMorseRepresentations(String[] words) 
+     public   int uniqueMorseRepresentations(String[] words) 
      {
     	 final String[] morse = {
      
@@ -572,7 +572,7 @@ public class gcd {
     	 return B;
      }
      //852 Peak Index in a Mountain Array
-    public static int peakIndexInMountainArray(int[] A) {
+    public   int peakIndexInMountainArray(int[] A) {
     		int lo=0;
 		int hi = A.length-1;
 		while(lo<=hi)
@@ -587,7 +587,7 @@ public class gcd {
         
     }
     //349 Intersection
- public static int[] intersection(int[] nums1, int[] nums2) {
+ public   int[] intersection(int[] nums1, int[] nums2) {
 	 List<Integer> ldst = new ArrayList<Integer>();
 	 Arrays.sort(nums1);
 	 Arrays.sort(nums2);
@@ -612,7 +612,7 @@ public class gcd {
  
     }
  //167. Two Sum II - Input array is sorted
- public static int[] twoSum(int[] numbers, int target) {
+ public   int[] twoSum(int[] numbers, int target) {
 	 int[] dst = new int[2];
 	 int j;
      for(int i=0;i<numbers.length;i++)
@@ -660,7 +660,7 @@ public class gcd {
 	 return sum;
  }
  //486.Predict the winner
- public static  boolean PredictTheWinner(int[] nums) {
+ public    boolean PredictTheWinner(int[] nums) {
 	 if (nums == null) { return true; }
 	    int n = nums.length;
 	    if ((n & 1) == 0) { return true; } 
@@ -677,7 +677,7 @@ public class gcd {
 	    return dp[n - 1] >= 0;
  }
  //230. Kth Smallest Element in a BST
- public static int kthSmallest(TreeNode root, int k) {
+ public   int kthSmallest(TreeNode root, int k) {
      ArrayList<Integer> ai = new ArrayList<Integer>();
      searchTree(ai,root);
      int[] dst =new int[ai.size()];
@@ -689,14 +689,14 @@ public class gcd {
      return dst[k];
 
  }
- public static void searchTree(ArrayList<Integer> ai ,TreeNode root)
+ public   void searchTree(ArrayList<Integer> ai ,TreeNode root)
  {
 	 ai.add(root.val);
 	 if(root.left!=null) searchTree(ai,root.left);
 	 if(root.right!=null) searchTree(ai,root.right);
  }
  //378. Kth Smallest Element in a Sorted Matrix
- public static int kthSmallest(int[][] matrix, int k) {
+ public   int kthSmallest(int[][] matrix, int k) {
 	 int len=matrix.length;
      int[] src = new int[len*len];
      for(int i=0;i<len;i++) 
@@ -709,11 +709,11 @@ public class gcd {
      Arrays.sort(src);
      return src[k-1];
  }
- public static int guessNumber(int n) {
+ public   int guessNumber(int n) {
      int lo = 1;int hi = n;
      return mGuess(1,n);
  }
- public static int mGuess(int lo,int hi)
+ public   int mGuess(int lo,int hi)
  {
      while(lo <= hi) {
      int mid = lo + (hi-lo)/2 ;
@@ -724,18 +724,18 @@ public class gcd {
      }
   return -1;
  }
- public static int guess(int num) {
+ public   int guess(int num) {
 	 if(num>45) return -1;
 	 else if(num<45) return 1;
 	 else return 0;
  }
  //475: Heaters
- public static int findRadius(int[] houses, int[] heaters) {
+ public   int findRadius(int[] houses, int[] heaters) {
      return 0;
  }
  
  //15: 3Sum
- public static List<List<Integer>> threeSum(int[] nums) {
+ public   List<List<Integer>> threeSum(int[] nums) {
 	 Arrays.sort(nums);
 	    // Map<Integer,Integer> map = new HashMap<>();
      List<List<Integer>>  dst = new ArrayList<List<Integer>>();
@@ -761,7 +761,7 @@ public class gcd {
      }
      return dst;
  }
- public static List<List<Integer>> threeSum1(int[] nums) // Two pointers solution
+ public   List<List<Integer>> threeSum1(int[] nums) // Two pointers solution
  {
 	 Arrays.sort(nums);
      List<List<Integer>>  dst = new ArrayList<List<Integer>>();
@@ -789,7 +789,7 @@ public class gcd {
     	 	return dst;
  }
 // 16. 3Sum Closest
- public static int threeSumClosest(int[] nums, int target) {
+ public   int threeSumClosest(int[] nums, int target) {
      Arrays.sort(nums);
      int distance = Integer.MAX_VALUE;
      int temp,temp2=0;
@@ -814,7 +814,7 @@ public class gcd {
      return dst;
  }
  //16:3Sum Second Solution
- public static int threeSumClosest1(int[] nums, int target) {
+ public   int threeSumClosest1(int[] nums, int target) {
      Arrays.sort(nums);
      int dst=0;
      int a,b,c;
@@ -845,7 +845,7 @@ public class gcd {
      return dst;
  }
  //18. 4Sum
- public static List<List<Integer>> fourSum(int[] nums, int tar) {	 
+ public   List<List<Integer>> fourSum(int[] nums, int tar) {	 
 	 Arrays.sort(nums);
      List<List<Integer>>  dst = new ArrayList<List<Integer>>();
      for(int m=0;m<nums.length-3;m++)
@@ -876,7 +876,7 @@ public class gcd {
     	 	return dst;
  }
  // kSum 
- public static ArrayList<List<Integer>> kSum(int[] nums, int target, int k, int index) {	 
+ public   ArrayList<List<Integer>> kSum(int[] nums, int target, int k, int index) {	 
 	 ArrayList<List<Integer>> res = new ArrayList<List<Integer>>();
      if(index >= nums.length) {
          return res;
@@ -923,7 +923,7 @@ public class gcd {
      return res;
  }
  //19. Remove Nth Node From End of List
- public static ListNode removeNthFromEnd(ListNode head, int n) {
+ public   ListNode removeNthFromEnd(ListNode head, int n) {
 	 ListNode  mHead = new ListNode(0);
 	 mHead.next = head;
 	 ListNode  miterator = mHead.next;
@@ -947,7 +947,7 @@ public class gcd {
 	 return mHead.next;
  }
 // 22. Generate Parentheses
- public static List<String> generateParenthesis(int n) {
+ public   List<String> generateParenthesis(int n) {
 	 List<String> list = new ArrayList<String>();
 	 TreeNode node = new TreeNode(1);
 	 generateTreeNode(node,1,1,2*n,n);
@@ -955,7 +955,7 @@ public class gcd {
 	 getAllTreeLines(list,path,node);	
 	 return list;
  }
- public static void generateTreeNode(TreeNode tree, int sum,int pCnt,int index, int n)
+ public   void generateTreeNode(TreeNode tree, int sum,int pCnt,int index, int n)
  {
 	 if(index < 2) {
 		 return;
@@ -984,7 +984,7 @@ public class gcd {
 		 generateTreeNode(tree.right,sum-1,pCnt,index-1,n);
 	 }
  } 
- public static void getAllTreeLines(List<String> list,List<Integer> path,TreeNode pRoot)
+ public   void getAllTreeLines(List<String> list,List<Integer> path,TreeNode pRoot)
  {
 	 if (pRoot== null)
 		{
@@ -1015,14 +1015,14 @@ public class gcd {
 
  }
  
- public static List<String> generatParenthesis_BackTracking(int n)
+ public   List<String> generatParenthesis_BackTracking(int n)
  {
 	 List<String> ans = new ArrayList<String>();
      backtrack(ans, "", 0, 0, n);
      return ans;
  }
 
- public static void backtrack(List<String> list, String str, int open, int close, int max){
+ public   void backtrack(List<String> list, String str, int open, int close, int max){
        if(str.length() == max*2){
            list.add(str);
            return;
@@ -1034,7 +1034,7 @@ public class gcd {
    }
 
 //24. Swap nodes in pairs
- public static ListNode swapPairs(ListNode head) {
+ public   ListNode swapPairs(ListNode head) {
 	 if(head == null || head.next == null)
 	 {
 		 return head;
@@ -1057,7 +1057,7 @@ public class gcd {
 	 return mHead;
  }
  //25. Reverse Nodes in k-Group
- public static ListNode reverseKGroup(ListNode head, int k) {
+ public   ListNode reverseKGroup(ListNode head, int k) {
 	 
 	 if (head==null||head.next==null||k<2) return head;
 	    
@@ -1091,7 +1091,7 @@ public class gcd {
 	 return mHead;
  }
  //46. Permutations
- public static List<List<Integer>> permute(int[] nums) {
+ public   List<List<Integer>> permute(int[] nums) {
 	 List<List<Integer>> dst = new ArrayList<List<Integer>>();
 	 int[] visited = new int[nums.length];
 	 List<Integer>  solution = new ArrayList<Integer>();
@@ -1099,7 +1099,7 @@ public class gcd {
 	 return dst;
 	 
  }
- public static void permutation_helper(int[] nums,int[] visited,List<List<Integer>> list,List<Integer> tar)
+ public   void permutation_helper(int[] nums,int[] visited,List<List<Integer>> list,List<Integer> tar)
  {
 	 if(tar.size() == nums.length) {
 		 list.add(new ArrayList<Integer>(tar));
@@ -1118,7 +1118,7 @@ public class gcd {
 	 }
  }
  //47 Permutations II
- public static List<List<Integer>> permuteUnique(int[] nums) {
+ public   List<List<Integer>> permuteUnique(int[] nums) {
 	 List<List<Integer>> dst = new ArrayList<List<Integer>>();
 	 int[] visited = new int[nums.length];
 	 Arrays.sort(nums);
@@ -1127,7 +1127,7 @@ public class gcd {
 	 return dst;
  }
  // @Tag: Back_Tracking
- public static void permutationUniqueHelper(int[] nums,int[] visited,List<List<Integer>> list,List<Integer> tar)
+ public   void permutationUniqueHelper(int[] nums,int[] visited,List<List<Integer>> list,List<Integer> tar)
  {
 	 if(tar.size() == nums.length) {
 		 list.add(new ArrayList<Integer>(tar));
@@ -1150,7 +1150,7 @@ public class gcd {
 	 }
  }
  //31. Next Permutation
- public static void nextPermutation(int[] nums) {
+ public   void nextPermutation(int[] nums) {
      int begin=0,end=0,pos=0;
      int valid  = 0;
 	 for(int i=nums.length-1;i>0;i--)
@@ -1182,7 +1182,7 @@ public class gcd {
 	 
  }
  //34. Find First and Last Position of Element in Sorted Array
- public static int[] searchRange(int[] nums, int target) {
+ public   int[] searchRange(int[] nums, int target) {
      int[] dst = {-1,-1};
      int pos = BinarySearch(target,nums);
     
@@ -1216,7 +1216,7 @@ public class gcd {
      return dst;
  }
 //39. Combination Sum
- public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+ public   List<List<Integer>> combinationSum(int[] candidates, int target) {
      List<List<Integer>> dst = new ArrayList<List<Integer>>();
      List<Integer>  tempList = new ArrayList<Integer>();
      int st = 0;
@@ -1224,7 +1224,7 @@ public class gcd {
      combinationSumHelper(dst,tempList,candidates,target,st,rest);
      return dst;
  }
- public static void combinationSumHelper(List<List<Integer>> list,List<Integer> tList,int[] nums, int target,int start,int remain)
+ public   void combinationSumHelper(List<List<Integer>> list,List<Integer> tList,int[] nums, int target,int start,int remain)
  {
 	if(remain <0) return;
 	if(remain ==0) list.add(new ArrayList<Integer>(tList));
@@ -1239,20 +1239,20 @@ public class gcd {
 	}
 	 return; 
  }
- public static int sum(int[] nums)
+ public   int sum(int[] nums)
  {
 	 int sum=0;
 	 for(int i=0;i<nums.length;i++) sum+=nums[i];
 	 return sum;
  }
- public static int sum(List<Integer> lst)
+ public   int sum(List<Integer> lst)
  {
 	 int sum=0;
 	 for(int i=0;i<lst.size();i++) sum+=lst.get(i);
 	 return sum;
  }
  //40. Combination Sum II
- public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
+ public   List<List<Integer>> combinationSum2(int[] candidates, int target) {
 	 List<List<Integer>> dst = new ArrayList<List<Integer>>();
      List<Integer>  tempList = new ArrayList<Integer>();
      Arrays.sort(candidates);
@@ -1261,7 +1261,7 @@ public class gcd {
      combinationSumHelper2(dst,tempList,candidates,target,st,rest);
      return dst;
  }
- public static void combinationSumHelper2(List<List<Integer>> list,List<Integer> tList,int[] nums, int target,int start,int remain)
+ public   void combinationSumHelper2(List<List<Integer>> list,List<Integer> tList,int[] nums, int target,int start,int remain)
  {
 	if(remain <0) return;
 	if(remain ==0) list.add(new ArrayList<Integer>(tList));
@@ -1278,13 +1278,13 @@ public class gcd {
 	 return; 
  }
 //33. Search in Rotated Sorted Array
- public static int search(int[] nums, int target) {
+ public   int search(int[] nums, int target) {
      for(int i=0;i<nums.length;i++)
          if(nums[i]==target) return i;
       return -1;
   }
  //41. First Missing Positive
- public static int firstMissingPositive(int[] nums) {
+ public   int firstMissingPositive(int[] nums) {
 	     Arrays.sort(nums);
 	     if(nums.length ==0) return 1;
 	     else if(nums[0]>1) return 1;
@@ -1304,7 +1304,7 @@ public class gcd {
  //42. Trapping Rain Water
  //This seems to be a "()" matching problem. A decline means a "(",and a ascend means a ")".
  //Using two pointers
- public static int trap(int[] height) {
+ public   int trap(int[] height) {
 	 int left=0,right = height.length-1;
 	 int left_max=0,right_max=0;
 	 int dst=0;
@@ -1335,7 +1335,7 @@ public class gcd {
  //Comment. It's a little bit confusing firstly I saw this problem. I couldn't figure out what the index means. 
  //And it means, if you are at index 3, and nums[3] = 5, then your max reach point should be 3+5 =8. If nums[10] =8, ok, it's true, 
  //because after you jump 5 steps, the next 7 round, you could jump 0 step.
- public static boolean canJump(int[] nums) {
+ public   boolean canJump(int[] nums) {
      int n = nums.length, reach = 0;
      for (int i = 0; i < n; ++i) {
          if (i > reach || reach >= n - 1) break;
@@ -1344,7 +1344,7 @@ public class gcd {
      return reach >= n - 1;
  }
  //45. Jump Game II
- public static int Jump(int[] nums) {
+ public   int Jump(int[] nums) {
      int res = 0, n = nums.length, last = 0, cur = 0;
      for (int i = 0; i < n - 1; ++i) {
          cur = Math.max(cur, i + nums[i]);
@@ -1357,7 +1357,7 @@ public class gcd {
      return res;
  }
 //49. Group Anagrams
- public static List<List<String>> groupAnagrams(String[] strs) {
+ public   List<List<String>> groupAnagrams(String[] strs) {
 	 List<List<String>> dst = new ArrayList<List<String>>();
 	 Map<Integer,List<String>> map = new HashMap<>();
 	 
@@ -1392,7 +1392,7 @@ public class gcd {
  // Note: Queen. In chess, a queen can 'eat' any other character in the same row, column or diag
  /** Solution exceeds time.
   **/
- public static List<List<String>> solveNQueens_TIME_EXCEED(int n) {
+ public   List<List<String>> solveNQueens_TIME_EXCEED(int n) {
      List<List<String>> dst = new ArrayList<>();
 	 int[][] chessboard = new int[n][n];
 	 List<mPoint> queens = new ArrayList<>();
@@ -1400,7 +1400,7 @@ public class gcd {
 	 queensHelper(dst,chessboard,solution,queens,new mPoint(0,0)); 
      return dst;
  }
- public static void queensHelper(List<List<String>> target,int[][] nums, List<List<mPoint>> results, List<mPoint> points, mPoint index)
+ public   void queensHelper(List<List<String>> target,int[][] nums, List<List<mPoint>> results, List<mPoint> points, mPoint index)
  {
  	int n = nums.length; 
  	if(points.size() == n)
@@ -1428,7 +1428,7 @@ public class gcd {
  		 }
  	 }
  }
- public static void updateChessBoard(int[][] nums,List<mPoint> points)
+ public   void updateChessBoard(int[][] nums,List<mPoint> points)
   {
  	 int n = nums.length;
  	 for(int i=0;i<n;i++)
@@ -1465,7 +1465,7 @@ public class gcd {
  		 nums[point.x][point.y] = 1;
  	 }
   }
- public static boolean checkChessBoard(int[][] nums,int n)
+ public   boolean checkChessBoard(int[][] nums,int n)
  {
  	if(n>nums.length -1 ) return true;
  	for(int i=0;i<nums.length;i++)
@@ -1475,7 +1475,7 @@ public class gcd {
  	}
  	return false;
  }
- public static void getSolution(List<List<String>> dst, int[][] nums)
+ public   void getSolution(List<List<String>> dst, int[][] nums)
  {
  	int n=nums.length;
  	List<String> strlist = new ArrayList<>();
@@ -1494,7 +1494,7 @@ public class gcd {
  	 } 
  	 dst.add(strlist);
  }
-	 public static List<List<String>> solveNQueens(int n) {
+	 public   List<List<String>> solveNQueens(int n) {
 		  char[][] board = new char[n][n];
 	      for(int i = 0; i < n; i++)
 	          for(int j = 0; j < n; j++)
@@ -1503,7 +1503,7 @@ public class gcd {
 	      dfs_NQueens(board, 0, res);
 	      return res;
 	 }
-	 public static void dfs_NQueens(char[][] board,int colIndex, List<List<String>> res)
+	 public   void dfs_NQueens(char[][] board,int colIndex, List<List<String>> res)
 	 {
 		 if(colIndex == board.length) {
 	         res.add(construct(board));
@@ -1520,7 +1520,7 @@ public class gcd {
 		 }
 		 
 	 }
-	 public static boolean isValid(char[][] board,int x, int y)
+	 public   boolean isValid(char[][] board,int x, int y)
 	 {
 		   for(int i = 0; i < board.length; i++) {
 	           for(int j = 0; j < y; j++) {
@@ -1531,7 +1531,7 @@ public class gcd {
 	       
 	       return true;
 	 }
-	 private static List<String> construct(char[][] board)
+	 private   List<String> construct(char[][] board)
 	 {
 		 List<String> res = new LinkedList<String>();
 	     for(int i = 0; i < board.length; i++) {
@@ -1541,13 +1541,13 @@ public class gcd {
 	     return res;
 	 }
 //52. N-Queens II
-public static int totalNQueens(int n) {
+public   int totalNQueens(int n) {
 	if(n==1) return 1;
 	if(n<4) return 0;	
 	return solveNQueens(n).size();	        
 }
 //54. Spiral Matrix
- public static List<Integer> spiralOrder(int[][] matrix) {
+ public   List<Integer> spiralOrder(int[][] matrix) {
 	 myNode direction = new myNode(0,1);
      List<Integer> dst = new ArrayList<Integer>();
      if(matrix.length==0) return dst;
@@ -1645,7 +1645,7 @@ public static int totalNQueens(int n) {
      return res;
  }
  //59. Spiral Matrix II
- public static int[][] generateMatrix(int n) {
+ public   int[][] generateMatrix(int n) {
 	 if(n<=0) return new int[0][0];
 	 int[][] dst = new int[n][n];
 	 int size = n*n;
@@ -1683,7 +1683,7 @@ public static int totalNQueens(int n) {
 	 return dst;
  }
  //60.Permutation Sequence
- public static String getPermutation(int n, int k) {
+ public   String getPermutation(int n, int k) {
 	 int[] FactorialTable = new int[10];
 	 for(int i=0;i<10;i++)
 		 FactorialTable[i] = Factorial(i);
@@ -1696,7 +1696,7 @@ public static int totalNQueens(int n) {
      getPermutationHelper(FactorialTable,index,dst,n,k);
      return dst.toString();
  }
- public static void getPermutationHelper(int[] FactorialTable,List<Integer> index,StringBuffer strbuff,int n,int k)
+ public   void getPermutationHelper(int[] FactorialTable,List<Integer> index,StringBuffer strbuff,int n,int k)
  {
 	 if(n==1) {
 		 strbuff.append(index.get(0));
@@ -1713,14 +1713,14 @@ public static int totalNQueens(int n) {
      index.remove(pos);
      getPermutationHelper(FactorialTable,index,strbuff,n-1,k);
  }
- public static int Factorial(int n)
+ public   int Factorial(int n)
  {
 	 if(n==1||n==0) return 1;
 	 else
 		 return n*Factorial(n-1);
  }
  //61. Rotate List
- public static ListNode rotateRight(ListNode head, int k) {
+ public   ListNode rotateRight(ListNode head, int k) {
 	 if(head==null) return null;
      ListNode tail = new ListNode(0);
      ListNode p = head;
@@ -1750,7 +1750,7 @@ public static int totalNQueens(int n) {
 
  }
  //62. Unique Paths
- public static int uniquePaths(int m, int n) {
+ public   int uniquePaths(int m, int n) {
      if(m==1 || n==1) return 1;
      if(m<n) 
      {
@@ -1774,7 +1774,7 @@ public static int totalNQueens(int n) {
  }
  //63. Unique Paths II
  // Stupid Solution Recursive
- public static int uniquePathsWithObstacles(int[][] obstacleGrid) {
+ public   int uniquePathsWithObstacles(int[][] obstacleGrid) {
      int[] sum=new int[1];
     // List<List<mPoint>> ans = new ArrayList<>();
      List<mPoint> res = new ArrayList<>();
@@ -1792,7 +1792,7 @@ public static int totalNQueens(int n) {
      uniquePathsWithObstaclesHelper(sum,start,obstacleGrid,TotalStep,res);
      return sum[0]/2;
  }
- public static void uniquePathsWithObstaclesHelper(int[] sum,mPoint curPoint,int[][] grid,int StepLeft,List<mPoint> res)
+ public   void uniquePathsWithObstaclesHelper(int[] sum,mPoint curPoint,int[][] grid,int StepLeft,List<mPoint> res)
  {
 	 if( StepLeft == 0)
 	 {
@@ -1834,7 +1834,7 @@ public static int totalNQueens(int n) {
 	    return dp[width - 1];
 	}
 //67. Add Binary
- public static String addBinary(String a, String b) {
+ public   String addBinary(String a, String b) {
      StringBuilder sb = new StringBuilder();
      int i = a.length() - 1, j = b.length() -1, carry = 0;
      while (i >= 0 || j >= 0) {
@@ -1848,7 +1848,7 @@ public static int totalNQueens(int n) {
      return sb.reverse().toString();
  }
 // 73. Set Matrix Zeroes
- public static void setZeroes(int[][] matrix) {
+ public   void setZeroes(int[][] matrix) {
     int rows = matrix.length;
     int cols = matrix[0].length;
     int [][] flag = new int[rows][cols];
@@ -1885,7 +1885,7 @@ public static int totalNQueens(int n) {
     }
  }
  //74 Search a 2D matrix
- public static boolean searchMatrix(int[][] matrix, int target) {
+ public   boolean searchMatrix(int[][] matrix, int target) {
 	  	if(matrix.length == 0 ) return false;
 	    int rows = matrix.length;
 		 int cols = matrix[0].length;
@@ -1904,16 +1904,99 @@ public static int totalNQueens(int n) {
  }
  //75. Sort Colors
  // Using Two Pointers
- public static void sortColors(int[] nums) {
-	 
+ public   void sortColors(int[] nums) {
+	 int lo = 0,hi = nums.length -1;
+	 for(int i=0;i<nums.length ;)
+	 {
+		 if(nums[i] == 0)
+		 {
+			 nums[i] = nums[lo];
+			 nums[lo++] = 0;
+			 i++;
+		 }
+		 else if(nums[i] == 2&& lo <hi)
+		 {
+			 nums[i] = nums[hi];
+			 nums[hi--] = 2;
+		 }
+		 else 
+		 {
+			 i++;
+		 }
+	 }
  }
 // 77. Combinations
- public static List<List<Integer>> combine(int n, int k) {
+ public   List<List<Integer>> combine(int n, int k) {
+	 if(k==0 || n == 0) return null; 
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
+     List<Integer> solution  = new ArrayList<>();
+     int[] nums = new int[n];
+     int[] isVisited = new int[n];
+     for(int i=0;i<n;i++)
+     {
+    	 	nums[i] = i;
+    	 	isVisited[i] = 0;
+     }
+     combineHelper(dst,solution,nums,isVisited,k,0);
      return dst;
  }
+ public   void combineHelper(List<List<Integer>> res,List<Integer> solution,int [] nums,int[] isVisited,int left,int curIndex)
+ {
+	 if(left == 0)
+	 {
+		 res.add(new ArrayList<>(solution));
+		 return;
+	 } 
+	 for(int i = curIndex;i<nums.length;i++)
+	 {
+		 if(isVisited[i]==1) continue;
+		 solution.add(nums[i]+1);
+		 isVisited[i] =  1;
+		 combineHelper(res,solution,nums,isVisited,left-1,++curIndex);
+		 isVisited[i] =  0;
+		 solution.remove(solution.size()-1);
+	 }
+ }
+ //78. Subsets
+ public   List<List<Integer>> subsets(int[] nums) {
+     Arrays.sort(nums);
+     List<List<Integer>> dst = new ArrayList<>();
+     if(nums.length == 0) {
+    	 	return dst;
+     }
+     for(int k=0;k<=nums.length;k++)
+     {
+    	 	dst.addAll(subsetsHelper(nums,k));
+     }
+     return dst; 
+ }
+ public List<List<Integer>> subsetsHelper(int[] nums, int k)
+ {
+	 List<List<Integer>> dst = new ArrayList<>();
+	 List<Integer> solution = new ArrayList<>();
+	 int[] isVisited = new int[nums.length];
+	 subsetsHelperHelper(dst,solution,nums,isVisited,k,0);
+	 return dst;
+ }
+ public  void subsetsHelperHelper(List<List<Integer>> res,List<Integer> solution,int [] nums,int[] isVisited,int left,int curIndex)
+ {
+	 if(left == 0)
+	 {
+		 res.add(new ArrayList<>(solution));
+		 return;
+	 } 
+	 for(int i = curIndex;i<nums.length;i++)
+	 {
+		 if(isVisited[i]==1) continue;
+		 solution.add(nums[i]);
+		 isVisited[i] =  1;
+		 subsetsHelperHelper(res,solution,nums,isVisited,left-1,++curIndex);
+		 isVisited[i] =  0;
+		 solution.remove(solution.size()-1);
+	 }
+ }
 //88. Merge Sorted Array
- public static void merge(int[] nums1, int m, int[] nums2, int n) {
+ public   void merge(int[] nums1, int m, int[] nums2, int n) {
      int i=m-1;
      int j=n-1;
      int k = m+n-1;
@@ -1934,7 +2017,7 @@ public static int totalNQueens(int n) {
     	 }
  }
  //242. Valid Anagrams
- public static boolean isAnagram(String s, String t) {
+ public   boolean isAnagram(String s, String t) {
      int[] code1 = new int[26];
      int[] code2 = new int[26];
      if(s.length() !=t.length()) return false;
@@ -1956,7 +2039,7 @@ public static int totalNQueens(int n) {
      else return false;
  }
  //492. Construct the Rectangle
- public static int[] constructRectangle(int area) {
+ public   int[] constructRectangle(int area) {
      int len = mySqrt(area);
      int[] res = new int[2];
      if(len * len == area) {
@@ -1975,7 +2058,7 @@ public static int totalNQueens(int n) {
      return res;
  }
  // 867, Transpose Matrix
- public static int[][] transpose(int[][] A) {
+ public   int[][] transpose(int[][] A) {
      int M = A.length, N = A[0].length;
      int[][] B = new int[N][M];
      for (int j = 0; j < N; j++)
@@ -1983,12 +2066,52 @@ public static int totalNQueens(int n) {
              B[j][i] = A[i][j];
      return B;
  }
-public static void main(String[] args)
+ //925.Long Pressed Name
+ public   boolean isLongPressedName(String name, String typed) {
+     int index1=0,index2=0;
+     while(index1<name.length () && index2<typed.length())
+     {
+    	 	char ch = name.charAt(index1);
+    	 	int sum1 = 0;
+    	 	for(;index1<name.length();index1++)
+    	 	{
+    	 		if(name.charAt(index1)==ch)
+    	 			sum1++;
+    	 		else
+    	 			break;
+    	 	}
+    	 	int sum2=0;
+    	 	for(;index2<typed.length();index2++)
+ 		{
+    	 		if(typed.charAt(index2) == ch)
+ 					sum2++;
+    	 		else
+    	 		{
+    	 			break;
+    	 		}
+ 		}
+    	 	if(sum2>=sum1)
+    	 	{
+    	 		continue;
+    	 	}
+    	 	else
+    	 	{
+    	 		return false;
+    	 	}
+     }
+    	 	
+     if(index1 == name.length() && index2 == typed.length())
+    	 	return true;
+     else
+    	 	return false;
+ }
+public   void main(String[] args)
 {
 	int nums[][] = {{1},{3}};
-    System.out.println(searchMatrix(nums,0));
+   // System.out.println(isLongPressedName("alex","aeex"));
+    combine(3,3);
 }
- public static void printArray(int[] nums)
+ public   void printArray(int[] nums)
  {
 	 for(int i=0;i<nums.length;i++)
 	 {
