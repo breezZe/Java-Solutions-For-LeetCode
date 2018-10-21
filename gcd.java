@@ -1833,7 +1833,80 @@ public static int totalNQueens(int n) {
 	    }
 	    return dp[width - 1];
 	}
- 
+//67. Add Binary
+ public static String addBinary(String a, String b) {
+     StringBuilder sb = new StringBuilder();
+     int i = a.length() - 1, j = b.length() -1, carry = 0;
+     while (i >= 0 || j >= 0) {
+         int sum = carry;
+         if (j >= 0) sum += b.charAt(j--) - '0';
+         if (i >= 0) sum += a.charAt(i--) - '0';
+         sb.append(sum % 2);
+         carry = sum / 2;
+     }
+     if (carry != 0) sb.append(carry);
+     return sb.reverse().toString();
+ }
+// 73. Set Matrix Zeroes
+ public static void setZeroes(int[][] matrix) {
+    int rows = matrix.length;
+    int cols = matrix[0].length;
+    int [][] flag = new int[rows][cols];
+    for(int i=0;i<rows;i++)
+    {
+    		for(int j=0;j<cols;j++)
+    		{
+    			flag[i][j] = 0xFFFFFFFF;
+    		}
+    }
+    for(int i=0;i<rows;i++)
+    {
+    		for( int j=0;j<cols;j++)
+    		{
+    			if(matrix[i][j] == 0)
+    			{
+    				for(int k=0;k<cols;k++)
+    				{
+    					flag[i][k]=0;
+    				}
+    				for(int k=0;k<rows;k++)
+    				{
+    					flag[k][j]=0;
+    				}
+    			}
+    		}
+    }
+    for(int i=0;i<rows;i++)
+    {
+    		for( int j=0;j<cols;j++)
+    		{
+    			matrix[i][j] = matrix[i][j] & flag[i][j];
+    		}
+    }
+ }
+ //74 Search a 2D matrix
+ public static boolean searchMatrix(int[][] matrix, int target) {
+	  	if(matrix.length == 0 ) return false;
+	    int rows = matrix.length;
+		 int cols = matrix[0].length;
+		 int [] nums = new int[rows*cols];
+		 for(int i=0;i<rows;i++)
+		 {
+			 for(int j=0;j<cols;j++)
+			 {
+				 nums[i*cols+j] = matrix[i][j];
+			 }
+		 }
+		 if(BinarySearch(target,nums)==-1)
+			 return false;
+		 else
+			 return true;   
+ }
+ //75. Sort Colors
+ // Using Two Pointers
+ public static void sortColors(int[] nums) {
+	 
+ }
 // 77. Combinations
  public static List<List<Integer>> combine(int n, int k) {
      List<List<Integer>> dst = new ArrayList<List<Integer>>()	;
@@ -1912,8 +1985,8 @@ public static int totalNQueens(int n) {
  }
 public static void main(String[] args)
 {
-	int nums[][] = {{0}};
-    System.out.println(uniquePathsWithObstacles(nums));
+	int nums[][] = {{1},{3}};
+    System.out.println(searchMatrix(nums,0));
 }
  public static void printArray(int[] nums)
  {
