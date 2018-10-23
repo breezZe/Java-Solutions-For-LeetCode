@@ -1995,6 +1995,60 @@ public   int totalNQueens(int n) {
 		 solution.remove(solution.size()-1);
 	 }
  }
+//78. Word Search
+ public boolean exist(char[][] board, String word) {
+	 char[] chars = word.toCharArray();
+	 int len = chars.length;
+	 mPoint[] direction = new mPoint[4];
+	 mPoint point = new mPoint(0,0);
+	 direction[0].set(0, 1);
+	 direction[1].set(1, 0);
+	 direction[2].set(0, -1);
+	 direction[3].set(-1, 0);
+	 for(int i=0;i<board.length;i++)
+	 {
+		 for(int j=0;j<board[0].length;j++)
+		 {
+			 if(board[i][j] == chars[0])
+			 {
+				 existHelper(board,chars,1,new mPoint(i,j),direction);
+			 }
+		 }
+	 }
+	 boolean isExist = existHelper(board,chars,0,point,direction);
+	 return isExist;
+	 
+ }
+ public boolean existHelper(char[][] board,char[] target,int index,mPoint CurPoint,mPoint[] direction)
+ {
+	 if(index == target.length)
+	 {
+		 return true;
+	 }
+	 int x = CurPoint.x;
+	 int y = CurPoint.y;
+	 for(int i=0;i<4;i++)
+	 {
+		 mPoint point = Add(CurPoint, direction[i]);
+		 if(CurPoint.x >=0 && CurPoint.x < board.length && CurPoint.y >=0 && CurPoint.y < board[0].length)
+		 {
+			 char ch = board[point.x][point.y];
+			 if(ch == target[index])
+			 {
+				if( existHelper(board,target,index+1,point,direction))
+				{
+					return true;
+				}
+			 }
+		 }
+	 }
+	 return false;
+ }
+	public mPoint Add(mPoint a,mPoint b)
+	{
+		mPoint po = new mPoint(a.x+b.x,a.y+b.y);
+		return po;
+	}
 //88. Merge Sorted Array
  public   void merge(int[] nums1, int m, int[] nums2, int n) {
      int i=m-1;
@@ -2105,11 +2159,15 @@ public   int totalNQueens(int n) {
      else
     	 	return false;
  }
-public   void main(String[] args)
+public static void main(String[] args)
 {
 	int nums[][] = {{1},{3}};
+	char[][] chess =  {{'A','B','C','E'},
+			{'S','F','C','S'},
+			{'A','D','E','E'},
+			{'A','D','E','E'}};
    // System.out.println(isLongPressedName("alex","aeex"));
-    combine(3,3);
+
 }
  public   void printArray(int[] nums)
  {
