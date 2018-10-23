@@ -2070,6 +2070,38 @@ public   int totalNQueens(int n) {
     	 	nums1[k--] = nums2[j--];
     	 }
  }
+ //169 Majority Element
+ public int majorityElement(int[] nums) {
+     Arrays.sort(nums);
+     if(nums.length==1) return nums[0];
+     int dst = nums[0];
+     int cnt =1;
+     for(int i=1;i<nums.length;i++)
+     {
+         if(nums[i] == dst)
+         {
+             cnt++;
+         }
+         else
+         {
+             if(cnt > nums.length/2)
+             {
+                 return dst;
+             }
+             else
+             {
+                 dst = nums[i];
+                 cnt = 1;
+             }
+         }
+     }
+     return dst;
+ }
+ public int majorityElement2(int [] nums)
+ {
+	 Arrays.sort(nums);
+	 return nums[nums.length/2];
+ }
  //242. Valid Anagrams
  public   boolean isAnagram(String s, String t) {
      int[] code1 = new int[26];
