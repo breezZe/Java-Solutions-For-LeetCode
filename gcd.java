@@ -1995,7 +1995,43 @@ public   int totalNQueens(int n) {
 		 solution.remove(solution.size()-1);
 	 }
  }
-//78. Word Search
+//79. Word Search
+ static boolean[][] visited;
+ public boolean exist(char[][] board, String word) {
+     visited = new boolean[board.length][board[0].length];
+     
+     for(int i = 0; i < board.length; i++){
+         for(int j = 0; j < board[i].length; j++){
+             if((word.charAt(0) == board[i][j]) && search(board, word, i, j, 0)){
+                 return true;
+             }
+         }
+     }
+     
+     return false;
+ }
+ 
+ private boolean search(char[][]board, String word, int i, int j, int index){
+     if(index == word.length()){
+         return true;
+     }
+     
+     if(i >= board.length || i < 0 || j >= board[i].length || j < 0 || board[i][j] != word.charAt(index) || visited[i][j]){
+         return false;
+     }
+     
+     visited[i][j] = true;
+     if(search(board, word, i-1, j, index+1) || 
+        search(board, word, i+1, j, index+1) ||
+        search(board, word, i, j-1, index+1) || 
+        search(board, word, i, j+1, index+1)){
+         return true;
+     }
+     
+     visited[i][j] = false;
+     return false;
+ }
+ /*
  public boolean exist(char[][] board, String word) {
 	 char[] chars = word.toCharArray();
 	 int len = chars.length;
@@ -2044,6 +2080,7 @@ public   int totalNQueens(int n) {
 	 }
 	 return false;
  }
+ */
 	public mPoint Add(mPoint a,mPoint b)
 	{
 		mPoint po = new mPoint(a.x+b.x,a.y+b.y);
@@ -2070,6 +2107,18 @@ public   int totalNQueens(int n) {
     	 	nums1[k--] = nums2[j--];
     	 }
  }
+ //141. Linked List Cycle
+ public boolean hasCycle(ListNode head) {
+	    if(head==null) return false;
+	    ListNode walker = head;
+	    ListNode runner = head;
+	    while(runner.next!=null && runner.next.next!=null) {
+	        walker = walker.next;
+	        runner = runner.next.next;
+	        if(walker==runner) return true;
+	    }
+	    return false;
+	}
  //169 Majority Element
  public int majorityElement(int[] nums) {
      Arrays.sort(nums);
@@ -2144,7 +2193,7 @@ public   int totalNQueens(int n) {
      return res;
  }
  // 867, Transpose Matrix
- public   int[][] transpose(int[][] A) {
+ public  int[][] transpose(int[][] A) {
      int M = A.length, N = A[0].length;
      int[][] B = new int[N][M];
      for (int j = 0; j < N; j++)
@@ -2153,7 +2202,7 @@ public   int totalNQueens(int n) {
      return B;
  }
  //925.Long Pressed Name
- public   boolean isLongPressedName(String name, String typed) {
+ public  boolean isLongPressedName(String name, String typed) {
      int index1=0,index2=0;
      while(index1<name.length () && index2<typed.length())
      {
@@ -2198,6 +2247,7 @@ public static void main(String[] args)
 			{'S','F','C','S'},
 			{'A','D','E','E'},
 			{'A','D','E','E'}};
+
    // System.out.println(isLongPressedName("alex","aeex"));
 
 }
