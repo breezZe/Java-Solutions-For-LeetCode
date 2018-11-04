@@ -2035,6 +2035,7 @@ public   int totalNQueens(int n) {
  public boolean exist(char[][] board, String word) {
 	 char[] chars = word.toCharArray();
 	 int len = chars.length;
+	 int Visited[][]	 =
 	 mPoint[] direction = new mPoint[4];
 	 mPoint point = new mPoint(0,0);
 	 direction[0].set(0, 1);
@@ -2055,7 +2056,7 @@ public   int totalNQueens(int n) {
 	 return isExist;
 	 
  }
- public boolean existHelper(char[][] board,char[] target,int index,mPoint CurPoint,mPoint[] direction)
+ public boolean existHelper(char[][] board,char[] target, int index,mPoint CurPoint,mPoint[] direction)
  {
 	 if(index == target.length)
 	 {
@@ -2063,11 +2064,14 @@ public   int totalNQueens(int n) {
 	 }
 	 int x = CurPoint.x;
 	 int y = CurPoint.y;
+	 if(CurPoint.x >=0 && CurPoint.x < board.length && CurPoint.y >=0 && CurPoint.y < board[0].length || )
+	{
+		
+	}
 	 for(int i=0;i<4;i++)
 	 {
 		 mPoint point = Add(CurPoint, direction[i]);
-		 if(CurPoint.x >=0 && CurPoint.x < board.length && CurPoint.y >=0 && CurPoint.y < board[0].length)
-		 {
+		 
 			 char ch = board[point.x][point.y];
 			 if(ch == target[index])
 			 {
@@ -2076,7 +2080,7 @@ public   int totalNQueens(int n) {
 					return true;
 				}
 			 }
-		 }
+		 
 	 }
 	 return false;
  }
@@ -2086,6 +2090,69 @@ public   int totalNQueens(int n) {
 		mPoint po = new mPoint(a.x+b.x,a.y+b.y);
 		return po;
 	}
+//82. Remove Duplicates from Sorted List II
+public static ListNode deleteDuplicates(ListNode head) {
+	 if(head == null || head.next == null) return head;
+	        List<Integer> numlist = new ArrayList<>();
+	        ListNode tmp = head;
+	        ListNode tmp1 = head;
+	        ListNode tmp2 = tmp1;
+	        int cnt=1;
+	        for(int i=0;head!=null;i++)
+	        {
+	            if(head.next!=null && head.val == head.next.val)
+	            {
+	                cnt++;
+	            }
+	            else
+	            {
+	                numlist.add(cnt);
+	                cnt=1;
+	            }  
+	            head=head.next;
+	        }
+	        int sum=0;
+	        int i=0;
+	        for(;i<numlist.size();i++)
+	        {
+	        		if(numlist.get(i)==1)
+	        		{
+	        			break;
+	        		}
+	        		else
+	        		{
+	        			sum = numlist.get(i);
+	        			while(sum > 0 )
+	        			{
+	        				tmp = tmp.next;
+	        				sum--;
+	        			}
+	        			//break;
+	        		}
+	        }
+	        if(tmp==null) return tmp;
+	        tmp1=tmp;
+	        tmp2=tmp1;
+	        for(;i<numlist.size();i++)
+	        {
+	        		int a = numlist.get(i);
+	        		if(a>1)
+	        		{
+		        		while(tmp1!=null && a>0)
+		        		{
+		        			a--;
+		        			tmp1 = tmp1.next;
+		        		}
+		        		tmp2.next=tmp1;
+	        		}
+	        		else if(tmp1!=null)
+	        		{
+	        			tmp2= tmp1;
+	        			tmp1=tmp1.next;
+	        		}
+	        }
+	        return tmp;
+	    }
 //88. Merge Sorted Array
  public   void merge(int[] nums1, int m, int[] nums2, int n) {
      int i=m-1;
@@ -2242,11 +2309,17 @@ public   int totalNQueens(int n) {
  }
 public static void main(String[] args)
 {
-	int nums[][] = {{1},{3}};
-	char[][] chess =  {{'A','B','C','E'},
-			{'S','F','C','S'},
-			{'A','D','E','E'},
-			{'A','D','E','E'}};
+	ListNode n1 = new ListNode(1);
+	ListNode n2 = new ListNode(1);
+	ListNode n3 = new ListNode(1);
+	ListNode n4 = new ListNode(2);
+	ListNode n5 = new ListNode(3);
+	n1.next = n2;
+	n2.next = n3;
+	n3.next = n4;
+	n4.next = n5;
+	
+	deleteDuplicates(n1);
 
    // System.out.println(isLongPressedName("alex","aeex"));
 
